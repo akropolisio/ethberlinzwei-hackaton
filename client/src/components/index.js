@@ -1,33 +1,4 @@
 import { Memes, About, Background, Balance } from './pages';
-import {
-  Triangle,
-  Circle,
-  Angle,
-  Orders,
-  Footer,
-  Header,
-  Wallet,
-  Hero,
-  Instructions,
-  Counter,
-  Web3Info,
-} from './elements';
+import { Triangle, Circle, Web3Info, Angle, Orders } from './elements';
 
-export {
-  Wallet,
-  Triangle,
-  Circle,
-  Angle,
-  Footer,
-  Header,
-  Hero,
-  Instructions,
-  Counter,
-  Web3Info,
-  Memes,
-  //^ openzeppelin defaults
-  Background,
-  Balance,
-  Orders,
-  About,
-};
+export { Triangle, Circle, Angle, Web3Info, Memes, Background, Balance, Orders, About };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PublicAddress, Blockie } from 'rimble-ui';
-import styles from './Web3Info.module.scss';
+import './Web3Info.css';
 
 export default class Web3Info extends Component {
   renderNetworkName(networkId) {
@@ -21,28 +21,28 @@ export default class Web3Info extends Component {
   render() {
     const { networkId, accounts, balance, isMetaMask } = this.props;
     return (
-      <div className={styles.web3}>
+      <div className={'web3'}>
         <h3> Your Web3 Info </h3>
-        <div className={styles.dataPoint}>
-          <div className={styles.label}>Network:</div>
-          <div className={styles.value}>
+        <div className={'dataPoint'}>
+          <div className={'label'}>Network:</div>
+          <div className={'value'}>
             {networkId} - {this.renderNetworkName(networkId)}
           </div>
         </div>
-        <div className={styles.dataPoint}>
-          <div className={styles.label}>Your address:</div>
-          <div className={styles.value}>
+        <div className={'dataPoint'}>
+          <div className={'label'}>Your address:</div>
+          <div className={'value'}>
             <PublicAddress address={accounts[0]} />
             <Blockie opts={{ seed: accounts[0], size: 15, scale: 3 }} />
           </div>
         </div>
-        <div className={styles.dataPoint}>
-          <div className={styles.label}>Your ETH balance:</div>
-          <div className={styles.value}>{balance}</div>
+        <div className={'dataPoint'}>
+          <div className={'label'}>Your ETH balance:</div>
+          <div className={'value'}>{balance}</div>
         </div>
-        <div className={styles.dataPoint}>
-          <div className={styles.label}>Using Metamask:</div>
-          <div className={styles.value}>{isMetaMask ? 'YES' : 'NO'}</div>
+        <div className={'dataPoint'}>
+          <div className={'label'}>Using Metamask:</div>
+          <div className={'value'}>{isMetaMask ? 'YES' : 'NO'}</div>
         </div>
       </div>
     );
