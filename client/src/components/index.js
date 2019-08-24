@@ -1,4 +1,4 @@
-import { Memes, About, Background } from './pages';
+import { Memes, About, Background, Balance } from './pages';
 import {
   Triangle,
   Circle,
@@ -27,6 +27,7 @@ export {
   Memes,
   //^ openzeppelin defaults
   Background,
+  Balance,
   Orders,
   About,
 };
