@@ -10,6 +10,7 @@ class About extends React.Component {
         <Angle top={10} left={16} w={20} h={20} />
         <Angle top={20} left={46} w={40} h={40} />
         <Angle top={50} left={16} w={20} h={20} />
+        <Angle top={90} left={80} w={60} h={60} />
         <Circle top={50} left={16} />
         <Circle top={5} left={96} />
         <Circle top={25} left={80} />
