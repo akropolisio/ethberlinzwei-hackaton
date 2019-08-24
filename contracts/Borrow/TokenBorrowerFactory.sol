@@ -9,7 +9,7 @@ contract TokenBorrowerFactory {
   MarketInterface fbMoneyMarket;
   IERC20 token;
 
-  mapping(address => CDP) public borrowers;
+  mapping(address => FBCDP) public borrowers;
 
   constructor(address weth, address _token, address moneyMarket) public {
     wethAddress = weth;
@@ -17,8 +17,7 @@ contract TokenBorrowerFactory {
     fbMoneyMarket = MarketInterface(moneyMarket);
   }
 
-  
-  function() payable public {
+  function()  public payable {
     FBCDP cdp;
     if (borrowers[msg.sender] == address(0x0)) {
       // create borrower contract if none exists
