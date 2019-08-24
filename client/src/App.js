@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getWeb3, { getGanacheWeb3 } from './utils/getWeb3';
+import { initialize0x } from './utils/0x';
 import { Loader } from 'rimble-ui';
 import { solidityLoaderOptions } from '../config/webpack';
 // ^openzeppelin starter kit defaults
@@ -17,6 +18,7 @@ class App extends Component {
   state = {
     storageValue: 0,
     web3: null,
+    Ox: null,
     accounts: null,
     contract: null,
     route: window.location.pathname.replace('/', ''),
@@ -34,14 +36,14 @@ class App extends Component {
 
   componentDidMount = async () => {
     const hotLoaderDisabled = solidityLoaderOptions.disabled;
-    let Counter = {};
-    let Wallet = {};
-    try {
-      Counter = require('../../contracts/Counter.sol');
-      Wallet = require('../../contracts/Wallet.sol');
-    } catch (e) {
-      console.log(e);
-    }
+    // let Counter = {};
+    // let Wallet = {};
+    // try {
+    //   Counter = require('../../contracts/Counter.sol');
+    //   Wallet = require('../../contracts/Wallet.sol');
+    // } catch (e) {
+    //   console.log(e);
+    // }
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
@@ -70,7 +72,7 @@ class App extends Component {
       balance = web3.utils.fromWei(balance, 'ether');
       let instance = null;
       let instanceWallet = null;
-      let deployedNetwork = null;
+      // let deployedNetwork = null;
       // if (Counter.networks) {
       //   deployedNetwork = Counter.networks[networkId.toString()];
       //   if (deployedNetwork) {
@@ -84,11 +86,15 @@ class App extends Component {
       //     instanceWallet = new web3.eth.Contract(Wallet.abi, deployedNetwork && deployedNetwork.address);
       //   }
       // }
+
+      const Ox = initialize0x();
+
       if (instance || instanceWallet) {
         // Set web3, accounts, and contract to the state, and then proceed with an
         // example of interacting with the contract's methods.
         this.setState(
           {
+            Ox,
             web3,
             ganacheAccounts,
             accounts,
@@ -109,6 +115,7 @@ class App extends Component {
         );
       } else {
         this.setState({
+          Ox,
           web3,
           ganacheAccounts,
           accounts,
@@ -196,7 +203,7 @@ class App extends Component {
         </TabPanel>
         <TabPanel>
           <h2>Open Orders</h2>
-          <Orders />
+          <Orders Ox={this.state.Ox} />
         </TabPanel>
       </Tabs>
     );
