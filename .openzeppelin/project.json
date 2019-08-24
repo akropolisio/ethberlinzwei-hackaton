@@ -2,7 +2,8 @@
   "manifestVersion": "2.2",
   "contracts": {
     "FBERC20Token": "FBERC20Token",
-    "Migrations": "Migrations"
+    "Migrations": "Migrations",
+    "FBToken": "FBERC20Token"
   },
   "dependencies": {},
   "name": "unisaur.cz",
