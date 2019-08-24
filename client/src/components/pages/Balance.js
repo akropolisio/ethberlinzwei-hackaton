@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PublicAddress } from 'rimble-ui';
 import { colors } from '../../utils';
 
-class About extends React.Component {
+class Balance extends React.Component {
   render() {
     return (
       <BalancesContainer>
@@ -18,4 +18,4 @@ const BalancesContainer = styled.main`
   margin: 2em;
 `;
 
-export default About;
+export default Balance;
