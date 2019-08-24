@@ -26,3 +26,5 @@ export const test_orders = {
     { price: 0.02, size: 100, date: '2019-15-11' },
   ],
 };
+
+export const colors = ['red', 'blue', 'green', 'yellow', 'white'];
