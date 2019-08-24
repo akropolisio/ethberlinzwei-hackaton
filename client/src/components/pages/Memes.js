@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import '../animations.css';
+import '../../assets/animations.css';
 
 const memes = ['Trump', 'Buffet', 'Some french guy'];
 

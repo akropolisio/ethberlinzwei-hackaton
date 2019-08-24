@@ -17,6 +17,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "max-len": [1, 80, 4],
     "no-console": 0,
     "default": 0,
     "no-duplicates": 0,

@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import getWeb3, { getGanacheWeb3 } from './utils/getWeb3';
-import Header from './components/Header/index.js';
-import Footer from './components/Footer/index.js';
-import Hero from './components/Hero/index.js';
-import Web3Info from './components/Web3Info/index.js';
-import CounterUI from './components/Counter/index.js';
-import Wallet from './components/Wallet/index.js';
-import Instructions from './components/Instructions/index.js';
 import { Loader } from 'rimble-ui';
 import { solidityLoaderOptions } from '../config/webpack';
+import styles from './App.module.scss';
 // ^openzeppelin starter kit defaults
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-import { Background, Orders, About } from './components';
+import {
+  Memes,
+  Wallet,
+  Background,
+  Orders,
+  About,
+  Triangle,
+  Circle,
+  Angle,
+  Footer,
+  Header,
+  Hero,
+  Instructions,
+  Counter,
+  Web3Info,
+} from './components';
 
 class App extends Component {
   state = {
@@ -213,7 +222,7 @@ class App extends Component {
             <p> You can see your account info on the left </p>
             <div className={styles.widgets}>
               <Web3Info {...this.state} />
-              <CounterUI decrease={this.decreaseCount} increase={this.increaseCount} {...this.state} />
+              <Counter decrease={this.decreaseCount} increase={this.increaseCount} {...this.state} />
             </div>
             {this.state.balance < 0.1 && (
               <Instructions ganacheAccounts={ganacheAccounts} name="metamask" accounts={accounts} />
