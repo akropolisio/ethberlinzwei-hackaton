@@ -1,16 +1,15 @@
 {
   "manifestVersion": "2.2",
   "contracts": {
-    "FBERC20Token": "FBERC20Token",
     "Migrations": "Migrations",
-    "FBToken": "FBERC20Token"
+    "FBToken": "FBERC20Token",
+    "Market": "Market"
   },
   "dependencies": {},
-  "name": "unisaur.cz",
+  "name": "unizaur",
   "version": "1.0.2",
   "compiler": {
-    "manager": "openzeppelin",
-    "solcVersion": "0.5.11",
+    "manager": "truffle",
     "compilerSettings": {
       "optimizer": {}
     }

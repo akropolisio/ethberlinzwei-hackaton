@@ -10,7 +10,9 @@ async function deploy(options) {
   await push(options);
 
   // Create an instance of MyContract, setting initial value to 42
-  await create(Object.assign({ contractAlias: 'FBToken', methodName: 'initialize', methodArgs: ["FBToken", "uFB", 18, 0, "0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1", ["0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1"], ["0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1"]]}, options));
+  const fbToken = await create(Object.assign({ contractAlias: 'FBToken', methodName: 'initialize', methodArgs: ["FBToken", "uFB", 18, 0, "0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1", ["0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1"], ["0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1"]]}, options));
+  
+  
 }
 
 module.exports = function(deployer, networkName, accounts) {

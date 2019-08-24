@@ -1,18 +1,21 @@
 pragma solidity ^0.5.0;
 
-import "./MarketInterface.sol";
+
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "../helpers/ERC20MintableInterface.sol";
 
-contract MarketMock is Initializable, MarketInterface {
+contract Market is Initializable {
+  address[] public collateralMarkets;
+
   mapping(address => mapping(address => uint)) public supplyBalances;
   mapping(address => mapping(address => uint)) public borrowBalances;
 
   mapping(address => uint ) private fakePriceOracle;
-  uint public collateralRatio = 15000000000000000000;
+  uint public collateralRatio;
 
   function initialize(address tokenAddress) public initializer  {
     _addToken(tokenAddress, 10000000000000000000); //FBTOken and base price
+    collateralRatio = 15000000000000000000;
   }
 
   function borrow(address asset, uint amount) public returns (bool) {
