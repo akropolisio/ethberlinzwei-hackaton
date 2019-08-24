@@ -17,4 +17,8 @@ contract FBERC20Token is StandaloneERC20, ERC20Burnable {
     function version() public pure returns (string memory) {
       return "v1";
     }
+
+    function burn(uint256 amount) public onlyMinter {
+        super.burn(amount);
+    }
 }
