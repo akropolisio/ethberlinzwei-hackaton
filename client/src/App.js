@@ -11,6 +11,8 @@ import 'react-tabs/style/react-tabs.css';
 import './assets/index.css';
 import { Background, Orders, About, Balance } from './components';
 
+import { Button } from '@material-ui/core';
+
 class App extends Component {
   state = {
     storageValue: 0,
@@ -178,6 +180,9 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
+          <Button variant="contained" color="primary">
+            qweqwe
+          </Button>
           <h2>About</h2>
           <About />
         </TabPanel>
