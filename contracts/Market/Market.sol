@@ -4,18 +4,57 @@ pragma solidity ^0.5.0;
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "../helpers/ERC20MintableInterface.sol";
 
-contract Market is Initializable {
+import "chainlink/v0.5/contracts/ChainlinkClient.sol";
+
+contract Market is Initializable, ChainlinkClient  {
   address[] public collateralMarkets;
 
   mapping(address => mapping(address => uint)) public supplyBalances;
   mapping(address => mapping(address => uint)) public borrowBalances;
 
-  mapping(address => uint ) private fakePriceOracle;
-  uint public collateralRatio;
+  mapping(address => uint ) private tokenPriceOracle;
 
-  function initialize(address tokenAddress) public initializer  {
-    _addToken(tokenAddress, 10000000000000000000); //FBTOken and base price
+  uint256 constant private oraclePayment = 1 * LINK;
+  uint256 public ethCurrentPrice;
+
+  uint public collateralRatio;
+  address link;
+  address oracle;
+
+  function initialize(address _tokenAddress) public initializer  {
+
+    link = 0xa36085F69e2889c224210F603D836748e7dC0088;
+
+    oracle = 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e;
+
     collateralRatio = 15000000000000000000;
+
+    //_addToken(_tokenAddress, priceInWeth);
+
+    setChainlinkToken(link);
+    setChainlinkOracle(oracle);
+  }
+
+  function requestETHPrice(bytes32 _jobId) public {
+    requestCoinMarketCapPrice(oracle, _jobId, "ETH", "USD");
+  }
+  function requestCoinMarketCapPrice (address _oracle, bytes32 _jobId, string memory _coin, string memory _market) private {
+      Chainlink.Request memory req = buildChainlinkRequest(_jobId, address(this), this.fulfill.selector);
+      req.add("sym", _coin);
+      req.add("convert", _market);
+      string[] memory path = new string[](5);
+      path[0] = "data";
+      path[1] = _coin;
+      path[2] = "quote";
+      path[3] = _market;
+      path[4] = "price";
+      req.addStringArray("copyPath", path);
+      req.addInt("times", 100);
+      sendChainlinkRequestTo(_oracle, req, oraclePayment);
+  }
+
+  function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId) {
+      ethCurrentPrice = _price;
   }
 
   function borrow(address asset, uint amount) public returns (bool) {
@@ -83,7 +122,7 @@ contract Market is Initializable {
   // third wave
 
   function assetPrices(address asset) public view returns (uint) {
-    return fakePriceOracle[asset];
+    return tokenPriceOracle[asset];
   }
 
   function calculateAccountValues(address account) public view returns (bool, uint, uint) {
@@ -91,8 +130,8 @@ contract Market is Initializable {
     uint totalSupplyInEth = 0;
     for (uint i = 0; i < collateralMarkets.length; i++) {
       address asset = collateralMarkets[i];
-      totalBorrowInEth += ( borrowBalances[account][asset] * fakePriceOracle[asset] );
-      totalSupplyInEth += ( supplyBalances[account][asset] * fakePriceOracle[asset] );
+      totalBorrowInEth += ( borrowBalances[account][asset] * tokenPriceOracle[asset] );
+      totalSupplyInEth += ( supplyBalances[account][asset] * tokenPriceOracle[asset] );
     }
     return (true, totalSupplyInEth, totalBorrowInEth);
   }
@@ -105,7 +144,7 @@ contract Market is Initializable {
       }
     }
     collateralMarkets.push(tokenAddress);
-    fakePriceOracle[tokenAddress] = priceInWeth;
+    //fakePriceOracle[tokenAddress] = priceInWeth;
   }
 
   function min(uint a, uint b) internal pure returns (uint) {

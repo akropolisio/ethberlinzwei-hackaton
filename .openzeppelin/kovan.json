@@ -395,11 +395,11 @@
       }
     },
     "Market": {
-      "address": "0xCCfF27F8533cf2619B8aa668461F0c8f3617d6BF",
-      "constructorCode": "60806040523480156100115760006000fd5b50610017565b61179d806100266000396000f3fe",
-      "bodyBytecodeHash": "53e0317704d9eeaf4adf1b0a82a04828049afaf73d0758b59be72d9e0f93374f",
-      "localBytecodeHash": "696025a70686b24d63cb59cf113629d6047609d2bd9cdcfe48e0a6621d421f1f",
-      "deployedBytecodeHash": "696025a70686b24d63cb59cf113629d6047609d2bd9cdcfe48e0a6621d421f1f",
+      "address": "0x71694e6cD46426b80DBff551f8D040cBD50fF5aB",
+      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612b55806100306000396000f3fe",
+      "bodyBytecodeHash": "fda5f3b75e99edfa34a5fa424222fe4b466ed22cd025db4661555d99f0b2bab2",
+      "localBytecodeHash": "348800d067a13cfab61d77c86a2c58a27fd0477d595916ce4d1b5ff7271cfd12",
+      "deployedBytecodeHash": "348800d067a13cfab61d77c86a2c58a27fd0477d595916ce4d1b5ff7271cfd12",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -422,6 +422,17 @@
           "id": "t_address",
           "kind": "elementary",
           "label": "address"
+        },
+        "t_bytes32": {
+          "id": "t_bytes32",
+          "kind": "elementary",
+          "label": "bytes32"
+        },
+        "t_mapping<t_address>": {
+          "id": "t_mapping<t_address>",
+          "valueType": "t_address",
+          "label": "mapping(key => address)",
+          "kind": "mapping"
         },
         "t_array:dyn<t_address>": {
           "id": "t_array:dyn<t_address>",
@@ -463,44 +474,116 @@
           "src": "1951:29:13"
         },
         {
+          "contract": "ChainlinkClient",
+          "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+          "label": "ens",
+          "astId": 1908,
+          "type": "t_address",
+          "src": "1078:24:15"
+        },
+        {
+          "contract": "ChainlinkClient",
+          "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+          "label": "ensNode",
+          "astId": 1910,
+          "type": "t_bytes32",
+          "src": "1106:23:15"
+        },
+        {
+          "contract": "ChainlinkClient",
+          "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+          "label": "link",
+          "astId": 1912,
+          "type": "t_address",
+          "src": "1133:31:15"
+        },
+        {
+          "contract": "ChainlinkClient",
+          "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+          "label": "oracle",
+          "astId": 1914,
+          "type": "t_address",
+          "src": "1168:40:15"
+        },
+        {
+          "contract": "ChainlinkClient",
+          "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+          "label": "requests",
+          "astId": 1917,
+          "type": "t_uint256",
+          "src": "1212:28:15"
+        },
+        {
+          "contract": "ChainlinkClient",
+          "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+          "label": "pendingRequests",
+          "astId": 1921,
+          "type": "t_mapping<t_address>",
+          "src": "1244:51:15"
+        },
+        {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
           "label": "collateralMarkets",
-          "astId": 1703,
+          "astId": 3529,
           "type": "t_array:dyn<t_address>",
-          "src": "173:34:15"
+          "src": "247:34:25"
         },
         {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
           "label": "supplyBalances",
-          "astId": 1709,
+          "astId": 3535,
           "type": "t_mapping<t_uint256>",
-          "src": "212:66:15"
+          "src": "286:66:25"
         },
         {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
           "label": "borrowBalances",
-          "astId": 1715,
+          "astId": 3541,
           "type": "t_mapping<t_uint256>",
-          "src": "282:66:15"
+          "src": "356:66:25"
         },
         {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
-          "label": "fakePriceOracle",
-          "astId": 1719,
+          "label": "tokenPriceOracle",
+          "astId": 3545,
           "type": "t_mapping<t_uint256>",
-          "src": "353:49:15"
+          "src": "427:50:25"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "ethCurrentPrice",
+          "astId": 3552,
+          "type": "t_uint256",
+          "src": "535:30:25"
         },
         {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
           "label": "collateralRatio",
-          "astId": 1721,
+          "astId": 3554,
           "type": "t_uint256",
-          "src": "406:27:15"
+          "src": "570:27:25"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "link",
+          "astId": 3556,
+          "type": "t_address",
+          "src": "601:12:25"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "oracle",
+          "astId": 3558,
+          "type": "t_address",
+          "src": "617:14:25"
         }
       ],
       "warnings": {
@@ -510,7 +593,140 @@
         "hasInitialValuesInDeclarations": false,
         "uninitializedBaseContracts": [],
         "storageUncheckedVars": [],
-        "storageDiff": []
+        "storageDiff": [
+          {
+            "action": "insert",
+            "updated": {
+              "index": 3,
+              "contract": "ChainlinkClient",
+              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+              "label": "ens",
+              "astId": 1908,
+              "type": "t_address",
+              "src": "1078:24:15"
+            }
+          },
+          {
+            "action": "insert",
+            "updated": {
+              "index": 4,
+              "contract": "ChainlinkClient",
+              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+              "label": "ensNode",
+              "astId": 1910,
+              "type": "t_bytes32",
+              "src": "1106:23:15"
+            }
+          },
+          {
+            "action": "insert",
+            "updated": {
+              "index": 5,
+              "contract": "ChainlinkClient",
+              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+              "label": "link",
+              "astId": 1912,
+              "type": "t_address",
+              "src": "1133:31:15"
+            }
+          },
+          {
+            "action": "insert",
+            "updated": {
+              "index": 6,
+              "contract": "ChainlinkClient",
+              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+              "label": "oracle",
+              "astId": 1914,
+              "type": "t_address",
+              "src": "1168:40:15"
+            }
+          },
+          {
+            "action": "insert",
+            "updated": {
+              "index": 7,
+              "contract": "ChainlinkClient",
+              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+              "label": "requests",
+              "astId": 1917,
+              "type": "t_uint256",
+              "src": "1212:28:15"
+            }
+          },
+          {
+            "action": "append",
+            "updated": {
+              "index": 8,
+              "contract": "ChainlinkClient",
+              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
+              "label": "pendingRequests",
+              "astId": 1921,
+              "type": "t_mapping<t_address>",
+              "src": "1244:51:15"
+            }
+          },
+          {
+            "action": "delete",
+            "original": {
+              "index": 6,
+              "contract": "Market",
+              "path": "contracts/Market/Market.sol",
+              "label": "fakePriceOracle",
+              "astId": 1719,
+              "type": "t_mapping<t_uint256>",
+              "src": "353:49:15"
+            }
+          },
+          {
+            "action": "append",
+            "updated": {
+              "index": 12,
+              "contract": "Market",
+              "path": "contracts/Market/Market.sol",
+              "label": "tokenPriceOracle",
+              "astId": 3545,
+              "type": "t_mapping<t_uint256>",
+              "src": "427:50:25"
+            }
+          },
+          {
+            "action": "append",
+            "updated": {
+              "index": 13,
+              "contract": "Market",
+              "path": "contracts/Market/Market.sol",
+              "label": "ethCurrentPrice",
+              "astId": 3552,
+              "type": "t_uint256",
+              "src": "535:30:25"
+            }
+          },
+          {
+            "action": "append",
+            "updated": {
+              "index": 15,
+              "contract": "Market",
+              "path": "contracts/Market/Market.sol",
+              "label": "link",
+              "astId": 3556,
+              "type": "t_address",
+              "src": "601:12:25"
+            }
+          },
+          {
+            "action": "append",
+            "updated": {
+              "index": 16,
+              "contract": "Market",
+              "path": "contracts/Market/Market.sol",
+              "label": "oracle",
+              "astId": 3558,
+              "type": "t_address",
+              "src": "617:14:25"
+            }
+          }
+        ]
       }
     },
     "Weth": {
@@ -904,11 +1120,11 @@
       }
     },
     "TokenBorrowerFactory": {
-      "address": "0xe70733e6B9928ED50740Cb5631b497c99C28d5E6",
-      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612c34806100266000396000f3fe",
-      "bodyBytecodeHash": "ca41fdbfb20fa7e1c43504043934e754e5b6281751c5ce90216d39636897bf71",
-      "localBytecodeHash": "98387a7c915e72f20d9a31620099d59dc124df467e12b1f12c73accc43132529",
-      "deployedBytecodeHash": "98387a7c915e72f20d9a31620099d59dc124df467e12b1f12c73accc43132529",
+      "address": "0xF61BDf2FF0b8F292dcE6D2e65cAab9A34f0f8f7c",
+      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612c1a806100266000396000f3fe",
+      "bodyBytecodeHash": "076a5b97931302f5fa84951bd372694257a3a0b76237211502f23f9ee6811773",
+      "localBytecodeHash": "b2feb40ec7917cecc7d121b94c01fdd4914f5bd2199a4c0a97c67904bc28eb94",
+      "deployedBytecodeHash": "b2feb40ec7917cecc7d121b94c01fdd4914f5bd2199a4c0a97c67904bc28eb94",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -968,33 +1184,33 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "wethAddress",
-          "astId": 2770,
+          "astId": 4740,
           "type": "t_address",
-          "src": "290:19:20"
+          "src": "290:19:30"
         },
         {
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "fbMoneyMarket",
-          "astId": 2772,
+          "astId": 4742,
           "type": "t_address",
-          "src": "313:29:20"
+          "src": "313:29:30"
         },
         {
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "token",
-          "astId": 2774,
+          "astId": 4744,
           "type": "t_address",
-          "src": "346:12:20"
+          "src": "346:12:30"
         },
         {
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "borrowers",
-          "astId": 2778,
+          "astId": 4748,
           "type": "t_mapping<t_address>",
-          "src": "365:42:20"
+          "src": "365:42:30"
         }
       ],
       "warnings": {
@@ -1033,6 +1249,13 @@
         "address": "0x906c449aC8C0a473f0E5f51b67598E79EEb3950c",
         "version": "1.0.2",
         "implementation": "0x2e525d7a5e0C9dD3c1D553e509b3a4B113373184",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xD56F6A472eAEB923489692798dDeA36C385F6Ab5",
+        "version": "1.0.2",
+        "implementation": "0x71694e6cD46426b80DBff551f8D040cBD50fF5aB",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }
