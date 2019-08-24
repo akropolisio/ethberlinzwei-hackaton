@@ -1,8 +1,10 @@
 pragma solidity ^0.5.0;
 
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/StandaloneERC20.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol";
 
-contract FBERC20Token is StandaloneERC20 {
+
+contract FBERC20Token is StandaloneERC20, ERC20Burnable {
     /* */
     
     function initialize(

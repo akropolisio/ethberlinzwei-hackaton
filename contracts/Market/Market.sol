@@ -8,20 +8,28 @@ contract MarketMock is Initializable, MarketInterface {
   mapping(address => mapping(address => uint)) public supplyBalances;
   mapping(address => mapping(address => uint)) public borrowBalances;
 
-  mapping(address => uint ) private priceOracle;
+  mapping(address => uint ) private fakePriceOracle;
+  uint public collateralRatio = 15000000000000000000;
+
+  function initialize(address tokenAddress) public initializer  {
+    _addToken(tokenAddress, 10000000000000000000); //FBTOken and base price
+  }
 
   function borrow(address asset, uint amount) public returns (uint) {
     borrowBalances[msg.sender][asset] += amount;
+
+    //minting
+
     IERC20(asset).transfer(msg.sender, amount);
 
-    return 0;
+    return 1;
   }
 
   function supply(address asset, uint amount) public returns (uint) {
     supplyBalances[msg.sender][asset] += amount;
     IERC20(asset).transferFrom(msg.sender, address(this), amount);
 
-    return 0;
+    return 1;
   }
 
   function withdraw(address asset, uint amount) public returns (uint) {
@@ -38,7 +46,7 @@ contract MarketMock is Initializable, MarketInterface {
     supplyBalances[msg.sender][asset] -= withdrawAmount;
     token.transfer(msg.sender, withdrawAmount);
 
-    return 0;
+    return 1;
   }
 
   function repayBorrow(address asset, uint amount) public returns (uint) {
@@ -56,7 +64,7 @@ contract MarketMock is Initializable, MarketInterface {
     borrowBalances[msg.sender][asset] -= repayAmount;
     token.transferFrom(msg.sender, address(this), repayAmount);
 
-    return 0;
+    return 1;
   }
   // second wave
 
@@ -75,10 +83,6 @@ contract MarketMock is Initializable, MarketInterface {
   }
 
   function calculateAccountValues(address account) public view returns (uint, uint, uint) {
-    bool failMode = failModes["calculateAccountValues"];
-    if (failMode) {
-      return (1, 0, 0);
-    }
     uint totalBorrowInEth = 0;
     uint totalSupplyInEth = 0;
     for (uint i = 0; i < collateralMarkets.length; i++) {
@@ -86,7 +90,7 @@ contract MarketMock is Initializable, MarketInterface {
       totalBorrowInEth += ( borrowBalances[account][asset] * fakePriceOracle[asset] );
       totalSupplyInEth += ( supplyBalances[account][asset] * fakePriceOracle[asset] );
     }
-    return (0, totalSupplyInEth, totalBorrowInEth);
+    return (1, totalSupplyInEth, totalBorrowInEth);
   }
 
   /* @dev very loose interpretation of some admin and price oracle functionality for helping unit tests, not really in the money market interface */
@@ -99,13 +103,6 @@ contract MarketMock is Initializable, MarketInterface {
     collateralMarkets.push(tokenAddress);
     fakePriceOracle[tokenAddress] = priceInWeth;
   }
-
-  mapping(string => bool) private failModes;
-  function setFail(string functionToFail, bool shouldFail) external {
-    failModes[functionToFail] = shouldFail;
-  }
-
-  uint public collateralRatio = 1500000000000000000;
 
   function min(uint a, uint b) internal pure returns (uint) {
     if (a < b) {

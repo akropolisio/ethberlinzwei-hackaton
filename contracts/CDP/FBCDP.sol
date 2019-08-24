@@ -60,7 +60,6 @@ contract FBCDP is Initializable {
     borrowedToken.transfer(owner, borrowedTokenBalance);
   }
 
- 
   /* @dev the factory contract will transfer tokens necessary to repay */
   function repay() external {
     require(creator == msg.sender);
