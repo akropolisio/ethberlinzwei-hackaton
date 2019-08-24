@@ -1,4 +1,4 @@
-const MoneyMarket_ = artifacts.require("MoneyMarketMock");
+const MoneyMarket_ = artifacts.require("MarketMock");
 const weth_ = artifacts.require("WETHMock");
 const borrowToken_ = artifacts.require("StandardTokenMock");
 const TokenBorrowerFactory = artifacts.require("TokenBorrowerFactory");
