@@ -8,10 +8,13 @@ import CounterUI from './components/Counter/index.js';
 import Wallet from './components/Wallet/index.js';
 import Instructions from './components/Instructions/index.js';
 import { Loader } from 'rimble-ui';
-
 import { solidityLoaderOptions } from '../config/webpack';
+// ^openzeppelin starter kit defaults
 
-import styles from './App.module.scss';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
+import { Background, Orders, About } from './components';
 
 class App extends Component {
   state = {
@@ -264,14 +267,38 @@ class App extends Component {
 
   render() {
     return (
-      <div className={styles.App}>
-        <Header />
-        {this.state.route === '' && this.renderInstructions()}
-        {this.state.route === 'counter' && this.renderBody()}
-        {this.state.route === 'evm' && this.renderEVM()}
-        {this.state.route === 'faq' && this.renderFAQ()}
-        <Footer />
-      </div>
+      <Tabs>
+        <TabList>
+          <Tab>About</Tab>
+          <Tab>Openzeppelin starter page</Tab>
+          <Tab>Memes</Tab>
+          <Tab>Orders</Tab>
+        </TabList>
+
+        <TabPanel>
+          <h2>About</h2>
+          <About />
+        </TabPanel>
+        <TabPanel>
+          <h2>openzelppelin starter page</h2>
+          <div className={styles.App}>
+            <Header />
+            {this.state.route === '' && this.renderInstructions()}
+            {this.state.route === 'counter' && this.renderBody()}
+            {this.state.route === 'evm' && this.renderEVM()}
+            {this.state.route === 'faq' && this.renderFAQ()}
+            <Footer />
+          </div>
+        </TabPanel>
+        <TabPanel>
+          <h2>Meme driven development</h2>
+          <Background />
+        </TabPanel>
+        <TabPanel>
+          <h2>Open Orders</h2>
+          <Orders />
+        </TabPanel>
+      </Tabs>
     );
   }
 }
