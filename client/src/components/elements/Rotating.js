@@ -13,6 +13,8 @@ const Rotatable = styled.div`
 
 export const Circle = styled(Rotatable)`
   border-radius: 50%;
+  animation: floating;
+  transition: 3s;
 `;
 
 export const Angle = styled(Rotatable)`
@@ -30,7 +32,7 @@ export const Triangle = styled(Rotatable)`
   border-left: 60px solid ${({ color }) => color || 'blue'};
   background-color: transparent;
   transition: 3s;
-  animation: rotate-rev 10s linear infinite;
+  animation: ${({ key }) => (key % 2 === 0 && 'rotate') || 'rotate-rev'} 10s linear infinite;
 `;
 
 export const Line = styled(Rotatable)``;

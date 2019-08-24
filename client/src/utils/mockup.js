@@ -27,4 +27,6 @@ export const test_orders = {
   ],
 };
 
-export const colors = ['red', 'blue', 'green', 'yellow', 'white'];
+export const colors = ['red', 'blue', 'green', 'yellow', 'black', 'orange'];
+
+export const memes = ['Trump', 'Buffet', 'Some french guy', 'Donny', 'Warren', 'who the hell he is anyway'];
