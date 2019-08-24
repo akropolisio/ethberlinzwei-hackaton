@@ -4,9 +4,12 @@ body {
 }
 
 .rotate_meme:first-of-type {
-  background: red;
+  background: url('../assets/memes/trump1.png');
   transform: rotate(-30deg) translateY(-150px) rotate(30deg);
   animation: rotate-1 10s linear infinite;
+  background-position: 56% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes rotate-1 {
@@ -19,9 +22,12 @@ body {
 }
 
 .rotate_meme:nth-of-type(2) {
-  background: orange;
+  background-image: url('../assets/memes/buffett1.png');
   transform: rotate(30deg) translateY(-150px) rotate(-30deg);
   animation: rotate-2 10s linear infinite;
+  background-position: 56% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes rotate-2 {
@@ -34,9 +40,12 @@ body {
 }
 
 .rotate_meme:nth-of-type(3) {
-  background: yellow;
+  background: url('../assets/memes/nouriel1.png');
   transform: rotate(90deg) translateY(-150px) rotate(-90deg);
   animation: rotate-3 10s linear infinite;
+  background-position: 56% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes rotate-3 {
@@ -115,4 +124,7 @@ body {
   100% {
     transform: rotate(-360deg);
   }
+}
+
+@keyframes floating {
 }
