@@ -1,9 +1,9 @@
-const MoneyMarketMock_ = artifacts.require("MoneyMarketMock");
+const MarketMock_ = artifacts.require("MarketMock");
 const weth_ = artifacts.require("WETHMock");
 const token_ = artifacts.require("StandardTokenMock");
-const CDP = artifacts.require("CDP");
+const CDP = artifacts.require("FBCDP");
 
-contract('CDP', function([root, account1, account2, ...accounts]) {
+contract('FBCDP', function([root, account1, account2, ...accounts]) {
   let mmm;
   let weth;
   let token;
@@ -11,7 +11,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
   let amountBorrowed = 395640535845651000000; // what ends up being borrowed based on borrow token price
 
   before(async function () {
-    mmm = await MoneyMarketMock_.deployed();
+    mmm = await MarketMock_.deployed();
     token = await token_.deployed();
     weth = await weth_.deployed();
     await mmm._addToken(weth.address, 10**18);
@@ -58,7 +58,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
     describe("failure modes", () => {
       let borrower;
       before(async () => {
-        borrower = await CDP.new(account1, token.address, weth.address, mmm.address);
+        borrower = await FBCDP.new(account1, token.address, weth.address, mmm.address);
       });
 
       it("reverts calls not from creator", async () => {
@@ -106,7 +106,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
 
   describe("repay/1", () => {
     it("repays borrowed tokens", async () => {
-      let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+      let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
       await borrower.fund({value: oneEth, gas: 5000000});
 
       let startingBorrowBalance = (await mmm.getBorrowBalance.call(borrower.address, token.address)).toString();
@@ -124,7 +124,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
     });
 
     it("repays what it can", async () => {
-      let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+      let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
       await borrower.fund({value: web3.toWei(0.5), gas: 5000000});
 
       let startingBorrowBalance = (await mmm.getBorrowBalance.call(borrower.address, token.address));
@@ -148,7 +148,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
         assert.equal(ratio, 175, "still 1.75");
       }
 
-      let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+      let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
       await borrower.fund({value: oneEth, gas: 5000000});
       await checkCollateralRatio(borrower);
 
@@ -163,7 +163,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
     describe("failure modes", () => {
       let borrower;
       before(async () => {
-         borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+         borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
         await borrower.fund({value: oneEth, gas: 5000000});
       });
 
@@ -220,7 +220,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
       ].forEach(async ([supplyValue, borrowValue, collateralRatio, availableBorrow]) => {
         // note the cdp will add .25 to colateral ratio
         it("tells value of token that can be borrowed to reach target collateral ratio", async () => {
-          let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+          let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
           let scaledSupplyValue = supplyValue * 10 **36;
           let scaledBorrowValue = borrowValue * 10 **36;
           let scaledCollateralRatio = collateralRatio * 10 **18;
@@ -245,7 +245,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
         [0, 100, 1.5, 0],
       ].forEach(async ([supplyValue, borrowValue, collateralRatio, availableBorrow]) => {
         it("returns 0 if no excess supply", async () => {
-          let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+          let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
           let scaledSupplyValue = supplyValue * 10 **36;
           let scaledBorrowValue = borrowValue * 10 **36;
           let scaledCollateralRatio = collateralRatio * 10 **18;
@@ -273,7 +273,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
         [200, 100, 1.5, 25],
       ].forEach(async ([supplyValue, borrowValue, collateralRatio, availableWithdrawal]) => {
         it("tells value of supply that can be withdrawn to reach target collateral ratio", async () => {
-          let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+          let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
           let scaledSupplyValue = supplyValue * 10 **36;
           let scaledBorrowValue = borrowValue * 10 **36;
           let scaledCollateralRatio = collateralRatio * 10 **18;
@@ -299,7 +299,7 @@ contract('CDP', function([root, account1, account2, ...accounts]) {
         [0, 100, 1.5, 0],
       ].forEach(async ([supplyValue, borrowValue, collateralRatio, availableWithdrawal]) => {
         it("returns 0 if no excess supply", async () => {
-          let borrower = await CDP.new(account2, token.address, weth.address, mmm.address);
+          let borrower = await FBCDP.new(account2, token.address, weth.address, mmm.address);
           let scaledSupplyValue = supplyValue * 10 **36;
           let scaledBorrowValue = borrowValue * 10 **36;
           let scaledCollateralRatio = collateralRatio * 10 **18;
