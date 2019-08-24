@@ -29,7 +29,7 @@ contract Market is Initializable {
 
   function supply(address asset, uint amount) public returns (bool) {
     supplyBalances[msg.sender][asset] += amount;
-    IERC20(asset).transferFrom(msg.sender, address(this), amount);
+    ERC20MintableInterface(asset).transferFrom(msg.sender, address(this), amount);
 
     return true;
   }

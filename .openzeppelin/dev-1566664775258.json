@@ -390,6 +390,103 @@
         "hasInitialValuesInDeclarations": false,
         "uninitializedBaseContracts": []
       }
+    },
+    "ERC20Mock": {
+      "address": "0x6eD79Aa1c71FD7BdBC515EfdA3Bd4e26394435cC",
+      "constructorCode": "6080604052610a9b806100136000396000f3fe",
+      "bodyBytecodeHash": "92ac416af0424e76e913d4cc13432596ec66a3053ed2fe68b28b3462b1c4f4c1",
+      "localBytecodeHash": "49e5a678d64a527743741a753d3babc4f8fb5f752192930b70b09cc1f0df4c39",
+      "deployedBytecodeHash": "49e5a678d64a527743741a753d3babc4f8fb5f752192930b70b09cc1f0df4c39",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 3415,
+          "type": "t_bool",
+          "src": "757:24:23"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 3417,
+          "type": "t_bool",
+          "src": "876:25:23"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 3473,
+          "type": "t_array:50<t_uint256>",
+          "src": "1951:29:23"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "_balances",
+          "astId": 674,
+          "type": "t_mapping<t_uint256>",
+          "src": "965:47:4"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "_allowances",
+          "astId": 680,
+          "type": "t_mapping<t_uint256>",
+          "src": "1019:70:4"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "_totalSupply",
+          "astId": 682,
+          "type": "t_uint256",
+          "src": "1096:29:4"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "______gap",
+          "astId": 1047,
+          "type": "t_array:50<t_uint256>",
+          "src": "7981:29:4"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
     }
   },
   "solidityLibs": {},
@@ -417,11 +514,25 @@
         "implementation": "0xe982E462b094850F12AF94d21D470e21bE9D0E9C",
         "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
         "kind": "Upgradeable"
+      },
+      {
+        "address": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "version": "1.0.2",
+        "implementation": "0xe982E462b094850F12AF94d21D470e21bE9D0E9C",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
       }
     ],
     "unizaur/Market": [
       {
         "address": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
+        "version": "1.0.2",
+        "implementation": "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x5f8e26fAcC23FA4cbd87b8d9Dbbd33D5047abDE1",
         "version": "1.0.2",
         "implementation": "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
         "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",

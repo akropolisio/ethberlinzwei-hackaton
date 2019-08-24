@@ -10,7 +10,11 @@ contract TokenBorrowerFactory is Initializable {
   MarketInterface fbMoneyMarket;
   IERC20 token;
 
+ 
   mapping(address => FBCDP) public borrowers;
+
+
+  event createCDP(address cdpAddress);
 
   function initialize(
     address weth, address _token, address moneyMarket)
@@ -21,13 +25,16 @@ contract TokenBorrowerFactory is Initializable {
   }
 
 
-  function()  external payable {
+  function ()  external payable {
     FBCDP cdp;
     if (address(borrowers[msg.sender]) == address(0x0)) {
       // create borrower contract if none exists
        cdp = new FBCDP();
        cdp.initialize(msg.sender, address(token), wethAddress, address(fbMoneyMarket));
        borrowers[msg.sender] = cdp;
+
+       emit createCDP(address(cdp));
+
     } else {
       cdp = borrowers[msg.sender];
     }

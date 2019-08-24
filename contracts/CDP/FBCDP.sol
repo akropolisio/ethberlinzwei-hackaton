@@ -37,30 +37,28 @@ contract FBCDP is Initializable {
     weth.deposit.value(msg.value)();
 
     bool supplyStatus = fbMoneyMarket.supply(address(weth), msg.value);
-    require(supplyStatus == false, "supply failed");
+    
+    require(supplyStatus == true, "supply failed");
 
-    /* --------- borrow the tokens ----------- */
+    
     uint collateralRatio = fbMoneyMarket.collateralRatio();
     (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
-    require(status ==  false, "calculating account values failed");
+    
+    require(status == true, "calculating account values failed");
 
     uint availableBorrow = findAvailableBorrow(totalSupply, totalBorrow, collateralRatio);
 
     uint assetPrice = fbMoneyMarket.assetPrices(address(borrowedToken));
-    /*
-      available borrow & asset price are both scaled 10e18, so include extra
-      scale in numerator dividing asset to keep it there
-    */
+   
     uint tokenAmount = availableBorrow.mul(expScale).div(assetPrice);
 
     //minting tokens
     bool borrowStatus = fbMoneyMarket.borrow(address(borrowedToken), tokenAmount);
+    require(borrowStatus == true, "borrow failed");
 
-    require(borrowStatus == false, "borrow failed");
-
-    /* ---------- sweep tokens to user ------------- */
     uint borrowedTokenBalance = borrowedToken.balanceOf(address(this));
     borrowedToken.transfer(owner, borrowedTokenBalance);
+
   }
 
   /* @dev the factory contract will transfer tokens necessary to repay */
@@ -68,12 +66,12 @@ contract FBCDP is Initializable {
     require(creator == msg.sender);
 
     bool repayStatus = fbMoneyMarket.repayBorrow(address(borrowedToken), uint(-1));
-    require(repayStatus == false, "repay failed");
+    require(repayStatus == true, "repay failed");
 
     /* ---------- withdraw excess collateral weth ------- */
     uint collateralRatio = fbMoneyMarket.collateralRatio();
     (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
-    require(status == false, "calculating account values failed");
+    require(status == true, "calculating account values failed");
 
     uint amountToWithdraw;
     if (totalBorrow == 0) {
@@ -83,7 +81,7 @@ contract FBCDP is Initializable {
     }
 
     bool withdrawStatus = fbMoneyMarket.withdraw(address(weth), amountToWithdraw);
-    require(withdrawStatus == false, "withdrawal failed");
+    require(withdrawStatus == true, "withdrawal failed");
 
     /* ---------- return ether to user ---------*/
     uint wethBalance = weth.balanceOf(address(this));

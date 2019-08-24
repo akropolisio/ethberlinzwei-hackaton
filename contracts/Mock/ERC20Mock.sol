@@ -27,6 +27,7 @@ contract ERC20Mock is Initializable, Context, IERC20 {
     mapping (address => mapping (address => uint256)) internal _allowances;
 
     uint256 internal _totalSupply;
+    
 
     /**
      * @dev Total number of tokens in existence

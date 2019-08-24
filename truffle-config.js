@@ -1,9 +1,14 @@
 const path = require("path");
 require('dotenv').config();
-const mnemonic = process.env.MNENOMIC;
+const mnemonic = process.env.METAMASK_MNEMONIC;
+
+
 const HDWalletProvider = require("truffle-hdwallet-provider");
 // Create your own key for Production environments (https://infura.io/)
+
 const INFURA_ID = 'd6760e62b67f4937ba1ea2691046f06d';
+
+
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -24,7 +29,7 @@ module.exports = {
     },
     kovan: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, 'https://kovan.infura.io/v3/' + process.env.INFURA_API_KEY)
+        return new HDWalletProvider(mnemonic, 'https://kovan.infura.io/v3/' + process.env.INFURA_API_KEY, 1)
       },
       network_id: '42',
       gas: 4465030,
