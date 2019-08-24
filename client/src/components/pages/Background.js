@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Memes from './Memes';
 
@@ -7,7 +6,7 @@ let move_interval;
 
 class Background extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       mx: window.innerWidth / 2,
       my: window.innerHeight / 2,
