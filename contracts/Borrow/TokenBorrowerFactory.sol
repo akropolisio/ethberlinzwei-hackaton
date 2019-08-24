@@ -1,27 +1,32 @@
 pragma solidity ^0.5.0;
 
-import "./Market/MarketInterface.sol";
+//import "./Market/MarketInterface.sol";
 import "./CDP/FBCDP.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/upgrades/contracts/Initializable.sol";
 
-contract TokenBorrowerFactory {
+contract TokenBorrowerFactory is Initializable {
   address wethAddress;
   MarketInterface fbMoneyMarket;
   IERC20 token;
 
   mapping(address => FBCDP) public borrowers;
 
-  constructor(address weth, address _token, address moneyMarket) public {
+  function initialize(
+    address weth, address _token, address moneyMarket)
+    public initializer {
     wethAddress = weth;
     token = IERC20(_token);
     fbMoneyMarket = MarketInterface(moneyMarket);
   }
 
-  function()  public payable {
+
+  function()  external payable {
     FBCDP cdp;
-    if (borrowers[msg.sender] == address(0x0)) {
+    if (address(borrowers[msg.sender]) == address(0x0)) {
       // create borrower contract if none exists
-       cdp = new FBCDP(msg.sender, token, wethAddress, fbMoneyMarket);
+       cdp = new FBCDP();
+       cdp.initialize(msg.sender, address(token), wethAddress, address(fbMoneyMarket));
        borrowers[msg.sender] = cdp;
     } else {
       cdp = borrowers[msg.sender];
@@ -33,11 +38,11 @@ contract TokenBorrowerFactory {
   function repay() public {
     FBCDP cdp = borrowers[msg.sender];
     uint allowance = token.allowance(msg.sender, address(this));
-    uint borrowBalance = fbMoneyMarket.getBorrowBalance(cdp, token);
+    uint borrowBalance = fbMoneyMarket.getBorrowBalance(address(cdp), address(token));
     uint userTokenBalance = token.balanceOf(msg.sender);
     uint transferAmount = min(min(allowance, borrowBalance), userTokenBalance);
 
-    token.transferFrom(msg.sender, cdp, transferAmount);
+    token.transferFrom(msg.sender, address(cdp), transferAmount);
     cdp.repay();
   }
 
@@ -50,10 +55,10 @@ contract TokenBorrowerFactory {
   }
 
   function getBorrowBalance(address user) view public returns (uint) {
-    return fbMoneyMarket.getBorrowBalance(borrowers[user], token);
+    return fbMoneyMarket.getBorrowBalance(address(borrowers[user]), address(token));
   }
 
   function getSupplyBalance(address user) view public returns (uint) {
-    return fbMoneyMarket.getSupplyBalance(borrowers[user], wethAddress);
+    return fbMoneyMarket.getSupplyBalance(address(borrowers[user]), wethAddress);
   }
 }
