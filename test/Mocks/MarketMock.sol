@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
-import "../../contracts/MoneyMarketInterface.sol";
-import "../../contracts/EIP20Interface.sol";
+import "../../contracts/Market/MarketInterface.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
 
-contract MoneyMarketMock is MoneyMarketInterface {
+contract MarketMock is MarketInterface {
   mapping(address => mapping(address => uint)) public supplyBalances;
   mapping(address => mapping(address => uint)) public borrowBalances;
 
@@ -16,7 +16,7 @@ contract MoneyMarketMock is MoneyMarketInterface {
     }
 
     borrowBalances[msg.sender][asset] += amount;
-    EIP20Interface(asset).transfer(msg.sender, amount);
+    IERC20(asset).transfer(msg.sender, amount);
 
     return 0;
   }
@@ -28,7 +28,7 @@ contract MoneyMarketMock is MoneyMarketInterface {
     }
 
     supplyBalances[msg.sender][asset] += amount;
-    EIP20Interface(asset).transferFrom(msg.sender, address(this), amount);
+    IERC20(asset).transferFrom(msg.sender, address(this), amount);
 
     return 0;
   }
@@ -39,7 +39,7 @@ contract MoneyMarketMock is MoneyMarketInterface {
       return 1;
     }
 
-    EIP20Interface token = EIP20Interface(asset);
+    EIP20Interface token = IERC20(asset);
     uint supplyBalance = supplyBalances[msg.sender][asset];
 
     uint withdrawAmount;
@@ -62,7 +62,7 @@ contract MoneyMarketMock is MoneyMarketInterface {
       return 1;
     }
 
-    EIP20Interface token = EIP20Interface(asset);
+    EIP20Interface token = IERC20(asset);
     uint borrowBalance = borrowBalances[msg.sender][asset];
 
     uint repayAmount;

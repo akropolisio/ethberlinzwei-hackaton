@@ -1,13 +1,13 @@
 pragma solidity ^0.4.24;
 
-import "./StandardToken.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/StandaloneERC20.sol";
 
 /**
   * @title The Compound Wrapped Ether Test Token
   * @author Compound
   * @notice A simple test token to wrap ether
   */
-contract WrappedEther is StandardToken {
+contract WrappedEther is StandaloneERC20 {
   string public name;
   string public symbol;
   uint8 public decimals;

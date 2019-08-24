@@ -2,7 +2,8 @@ pragma solidity ^0.5.0;
 
 contract MarketInterface {
   uint public collateralRatio;
-
+  address[] public collateralMarkets;
+  
   function borrow(address asset, uint amount) public returns (uint);
 
   function supply(address asset, uint amount) public returns (uint);
