@@ -8,7 +8,7 @@ import styles from './App.module.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-import { Background, Orders, About } from './components';
+import { Background, Orders, About, Balance } from './components';
 
 class App extends Component {
   state = {
@@ -162,6 +162,7 @@ class App extends Component {
       <Tabs>
         <TabList>
           <Tab>About</Tab>
+          <Tab>Balance</Tab>
           <Tab>Memes</Tab>
           <Tab>Orders</Tab>
         </TabList>
@@ -169,6 +170,10 @@ class App extends Component {
         <TabPanel>
           <h2>About</h2>
           <About />
+        </TabPanel>
+        <TabPanel>
+          <h2>Your balances</h2>
+          <Balance />
         </TabPanel>
         <TabPanel>
           <h2>Meme driven development</h2>

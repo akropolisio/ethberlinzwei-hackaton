@@ -4,10 +4,9 @@ import '../../assets/animations.css';
 
 const memes = ['Trump', 'Buffet', 'Some french guy'];
 
-const Memes = ({ x, y }) => {
-  console.log(x, y);
+const Memes = () => {
   return (
-    <Playground x={x} y={y}>
+    <Playground>
       <Origin className="tooltip" />
       {memes.map((el, id) => (
         <Meme key={id} className="rotate_meme">
@@ -26,6 +25,7 @@ const Origin = styled.span`
   width: 50px;
   height: 50px;
   background-color: rebeccapurple;
+  animation: floating;
 `;
 
 const Playground = styled.div`
