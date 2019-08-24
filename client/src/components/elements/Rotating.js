@@ -4,10 +4,10 @@ import '../../assets/animations.css';
 
 const Rotatable = styled.div`
   position: absolute;
-  width: ${({ w }) => `${w}px` || '50px'};
-  height: ${({ h }) => `${h}px` || '50px'};
-  top: ${({ top }) => `${top}vh` || 10};
-  left: ${({ left }) => `${left}vw` || 10};
+  width: ${({ w }) => `${w}` || '50'}px;
+  height: ${({ h }) => `${h}` || '50'}px;
+  top: ${({ top }) => `${top}` || 10}%;
+  left: ${({ left }) => `${left}` || 10}%;
   background-color: ${({ color }) => color || 'blue'};
 `;
 
@@ -18,7 +18,8 @@ export const Circle = styled(Rotatable)`
 export const Angle = styled(Rotatable)`
   border-radius: 40px 50px 150px;
   transition: 3s;
-  animation: rotate 10s linear infinite;
+  transform: rotate(${({ rotate }) => rotate || '-5'}deg);
+  // animation: rotate 10s linear infinite;
 `;
 
 export const Triangle = styled(Rotatable)`
@@ -26,8 +27,8 @@ export const Triangle = styled(Rotatable)`
   height: 0;
   border-top: 30px solid transparent;
   border-bottom: 35px solid transparent;
-  border-left: 60px solid green;
-  background-color: white;
+  border-left: 60px solid ${({ color }) => color || 'blue'};
+  background-color: transparent;
   transition: 3s;
   animation: rotate-rev 10s linear infinite;
 `;

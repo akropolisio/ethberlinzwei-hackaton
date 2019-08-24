@@ -2,21 +2,48 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Triangle, Circle, Angle } from '../elements';
+import { colors } from '../../utils';
 
 class About extends React.Component {
+  renderTriangles = () => {
+    return Array.from(Array(10)).map(el => {
+      let top = Math.ceil(Math.random() * 90);
+      let left = Math.ceil(Math.random() * 90);
+      let w = Math.ceil(Math.random() * 200);
+      let h = w;
+      let color = Math.ceil(Math.random() * colors.length - 1);
+      return <Triangle top={top} left={left} w={w} h={h} color={colors[color]} />;
+    });
+  };
+  renderCircles = () => {
+    return Array.from(Array(10)).map(el => {
+      let top = Math.ceil(Math.random() * 90);
+      let left = Math.ceil(Math.random() * 90);
+      let w = Math.ceil(Math.random() * 100);
+      let h = w;
+      let color = Math.ceil(Math.random() * colors.length - 1);
+      return <Circle top={top} left={left} w={w} h={h} color={colors[color]} />;
+    });
+  };
+  renderAngles = () => {
+    return Array.from(Array(20)).map(el => {
+      let top = Math.ceil(Math.random() * 30);
+      let left = Math.ceil(Math.random() * 90);
+      let w = 1 + Math.ceil(Math.random() * 10);
+      let h = 5 + Math.ceil(Math.random() * 400);
+      let color = Math.ceil(Math.random() * colors.length - 1);
+      let rotate = -5 - Math.ceil(Math.random() * 300);
+
+      return <Angle top={top} left={left} w={w} h={h} color={colors[color]} rotate={rotate} />;
+    });
+  };
+
   render() {
     return (
       <Relative>
-        <Angle top={10} left={16} w={20} h={20} />
-        <Angle top={20} left={46} w={40} h={40} />
-        <Angle top={50} left={16} w={20} h={20} />
-        <Angle top={90} left={80} w={60} h={60} />
-        <Circle top={50} left={16} />
-        <Circle top={5} left={96} />
-        <Circle top={25} left={80} />
-        <Triangle top={30} left={56} />
-        <Triangle top={10} left={20} />
-        <Triangle top={60} left={80} />
+        {this.renderTriangles()}
+        {this.renderCircles()}
+        {this.renderAngles()}
       </Relative>
     );
   }
@@ -25,7 +52,7 @@ class About extends React.Component {
 const Relative = styled.main`
   position: relative;
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.3;
   width: 100vw;
   height: 100vh;
   margin: 0;
