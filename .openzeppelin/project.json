@@ -3,5 +3,12 @@
   "contracts": {},
   "dependencies": {},
   "name": "unisaur.cz",
-  "version": "1.0.2"
+  "version": "1.0.2",
+  "compiler": {
+    "manager": "openzeppelin",
+    "solcVersion": "0.5.11",
+    "compilerSettings": {
+      "optimizer": {}
+    }
+  }
 }
