@@ -1,3 +1,33 @@
 {
-  "extends": ["react-app", "plugin:prettier/recommended"]
+  "extends": ["react-app", "plugin:prettier/recommended", "eslint:recommended"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "mocha": true,
+    "jest": true
+  },
+  "plugins": ["node", "es6"],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "no-console": 0,
+    "default": 0,
+    "no-duplicates": 0,
+    "named": 0,
+    "namespace": 0,
+    "no-unresolved": 0,
+    "no-unused-vars": 0,
+    "no-named-as-default": 0,
+    "no-constant-condition": 1,
+    "no-case-declarations": 0,
+    "semi": 0,
+    "quotes": 0
+  }
 }
