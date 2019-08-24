@@ -1,8 +1,8 @@
 pragma solidity ^0.5.0;
 
-import "./MarketInterface";
+import "./MarketInterface.sol";
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
-import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
+import "../helpers/ERC20MintableInterface.sol";
 
 contract MarketMock is Initializable, MarketInterface {
   mapping(address => mapping(address => uint)) public supplyBalances;
@@ -15,25 +15,24 @@ contract MarketMock is Initializable, MarketInterface {
     _addToken(tokenAddress, 10000000000000000000); //FBTOken and base price
   }
 
-  function borrow(address asset, uint amount) public returns (uint) {
+  function borrow(address asset, uint amount) public returns (bool) {
     borrowBalances[msg.sender][asset] += amount;
 
     //minting
+    ERC20MintableInterface(asset).mint(msg.sender, amount);
 
-    IERC20(asset).transfer(msg.sender, amount);
-
-    return 1;
+    return true;
   }
 
-  function supply(address asset, uint amount) public returns (uint) {
+  function supply(address asset, uint amount) public returns (bool) {
     supplyBalances[msg.sender][asset] += amount;
     IERC20(asset).transferFrom(msg.sender, address(this), amount);
 
-    return 1;
+    return true;
   }
 
-  function withdraw(address asset, uint amount) public returns (uint) {
-    EIP20Interface token = IERC20(asset);
+  function withdraw(address asset, uint amount) public returns (bool) {
+    ERC20MintableInterface token = ERC20MintableInterface(asset);
     uint supplyBalance = supplyBalances[msg.sender][asset];
 
     uint withdrawAmount;
@@ -46,12 +45,12 @@ contract MarketMock is Initializable, MarketInterface {
     supplyBalances[msg.sender][asset] -= withdrawAmount;
     token.transfer(msg.sender, withdrawAmount);
 
-    return 1;
+    return true;
   }
 
-  function repayBorrow(address asset, uint amount) public returns (uint) {
+  function repayBorrow(address asset, uint amount) public returns (bool) {
   
-    EIP20Interface token = IERC20(asset);
+    ERC20MintableInterface token = ERC20MintableInterface(asset);
     uint borrowBalance = borrowBalances[msg.sender][asset];
 
     uint repayAmount;
@@ -64,7 +63,9 @@ contract MarketMock is Initializable, MarketInterface {
     borrowBalances[msg.sender][asset] -= repayAmount;
     token.transferFrom(msg.sender, address(this), repayAmount);
 
-    return 1;
+    token.burn(token.balanceOf(address(this)));
+
+    return true;
   }
   // second wave
 
@@ -82,7 +83,7 @@ contract MarketMock is Initializable, MarketInterface {
     return fakePriceOracle[asset];
   }
 
-  function calculateAccountValues(address account) public view returns (uint, uint, uint) {
+  function calculateAccountValues(address account) public view returns (bool, uint, uint) {
     uint totalBorrowInEth = 0;
     uint totalSupplyInEth = 0;
     for (uint i = 0; i < collateralMarkets.length; i++) {
@@ -90,7 +91,7 @@ contract MarketMock is Initializable, MarketInterface {
       totalBorrowInEth += ( borrowBalances[account][asset] * fakePriceOracle[asset] );
       totalSupplyInEth += ( supplyBalances[account][asset] * fakePriceOracle[asset] );
     }
-    return (1, totalSupplyInEth, totalBorrowInEth);
+    return (true, totalSupplyInEth, totalBorrowInEth);
   }
 
   /* @dev very loose interpretation of some admin and price oracle functionality for helping unit tests, not really in the money market interface */

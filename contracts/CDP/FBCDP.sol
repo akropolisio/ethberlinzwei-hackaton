@@ -1,8 +1,8 @@
 pragma solidity ^0.5.0;
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
-import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol";
 import "../helpers/WrappedEtherInterface.sol";
+import "../helpers/ERC20MintableInterface.sol";
 import "../Market/MarketInterface.sol";
 
 contract FBCDP is Initializable {
@@ -13,7 +13,7 @@ contract FBCDP is Initializable {
   address creator;
   address payable owner;
   WrappedEtherInterface weth;
-  IERC20 borrowedToken;
+  ERC20MintableInterface borrowedToken;
   MarketInterface fbMoneyMarket;
 
   event Log(uint x, string m);
@@ -24,7 +24,7 @@ contract FBCDP is Initializable {
     ) public initializer {
         creator = msg.sender;
         owner = _owner;
-        borrowedToken = IERC20(tokenAddress);
+        borrowedToken = ERC20MintableInterface(tokenAddress);
         fbMoneyMarket = MarketInterface(marketAddress);
         weth = WrappedEtherInterface(wethAddress);
         weth.approve(marketAddress, uint(-1));
@@ -36,13 +36,13 @@ contract FBCDP is Initializable {
 
     weth.deposit.value(msg.value)();
 
-    uint supplyStatus = fbMoneyMarket.supply(address(weth), msg.value);
-    require(supplyStatus == 0, "supply failed");
+    bool supplyStatus = fbMoneyMarket.supply(address(weth), msg.value);
+    require(supplyStatus == false, "supply failed");
 
     /* --------- borrow the tokens ----------- */
     uint collateralRatio = fbMoneyMarket.collateralRatio();
-    (uint status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
-    require(status == 0, "calculating account values failed");
+    (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
+    require(status ==  false, "calculating account values failed");
 
     uint availableBorrow = findAvailableBorrow(totalSupply, totalBorrow, collateralRatio);
 
@@ -52,8 +52,11 @@ contract FBCDP is Initializable {
       scale in numerator dividing asset to keep it there
     */
     uint tokenAmount = availableBorrow.mul(expScale).div(assetPrice);
-    uint borrowStatus = fbMoneyMarket.borrow(address(borrowedToken), tokenAmount);
-    require(borrowStatus == 0, "borrow failed");
+
+    //minting tokens
+    bool borrowStatus = fbMoneyMarket.borrow(address(borrowedToken), tokenAmount);
+
+    require(borrowStatus == false, "borrow failed");
 
     /* ---------- sweep tokens to user ------------- */
     uint borrowedTokenBalance = borrowedToken.balanceOf(address(this));
@@ -64,13 +67,13 @@ contract FBCDP is Initializable {
   function repay() external {
     require(creator == msg.sender);
 
-    uint repayStatus = fbMoneyMarket.repayBorrow(address(borrowedToken), uint(-1));
-    require(repayStatus == 0, "repay failed");
+    bool repayStatus = fbMoneyMarket.repayBorrow(address(borrowedToken), uint(-1));
+    require(repayStatus == false, "repay failed");
 
     /* ---------- withdraw excess collateral weth ------- */
     uint collateralRatio = fbMoneyMarket.collateralRatio();
-    (uint status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
-    require(status == 0, "calculating account values failed");
+    (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
+    require(status == false, "calculating account values failed");
 
     uint amountToWithdraw;
     if (totalBorrow == 0) {
@@ -79,8 +82,8 @@ contract FBCDP is Initializable {
       amountToWithdraw = findAvailableWithdrawal(totalSupply, totalBorrow, collateralRatio);
     }
 
-    uint withdrawStatus = fbMoneyMarket.withdraw(address(weth), amountToWithdraw);
-    require(withdrawStatus == 0 , "withdrawal failed");
+    bool withdrawStatus = fbMoneyMarket.withdraw(address(weth), amountToWithdraw);
+    require(withdrawStatus == false, "withdrawal failed");
 
     /* ---------- return ether to user ---------*/
     uint wethBalance = weth.balanceOf(address(this));

@@ -4,13 +4,13 @@ contract MarketInterface {
   uint public collateralRatio;
   address[] public collateralMarkets;
 
-  function borrow(address asset, uint amount) public returns (uint);
+  function borrow(address asset, uint amount) public returns (bool);
 
-  function supply(address asset, uint amount) public returns (uint);
+  function supply(address asset, uint amount) public returns (bool);
 
-  function withdraw(address asset, uint requestedAmount) public returns (uint);
+  function withdraw(address asset, uint requestedAmount) public returns (bool);
 
-  function repayBorrow(address asset, uint amount) public returns (uint);
+  function repayBorrow(address asset, uint amount) public returns (bool);
 
   function getSupplyBalance(address account, address asset) view public returns (uint);
 
@@ -18,5 +18,5 @@ contract MarketInterface {
 
   function assetPrices(address asset) view public returns (uint);
 
-  function calculateAccountValues(address account) view public returns (uint, uint, uint);
+  function calculateAccountValues(address account) view public returns (bool, uint, uint);
 }
