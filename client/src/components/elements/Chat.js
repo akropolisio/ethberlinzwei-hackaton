@@ -4,11 +4,8 @@ import { Form as FinalForm, Field as FinalField } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
 import { Button, Grid } from '@material-ui/core';
 
-import Loader from './Loader';
 import arr_up from '../../assets/arrow-up.png';
 import arr_down from '../../assets/arrow-down.png';
-
-const posts = ['asdasd', 'asdgeqw', 'awdawd'];
 
 class Chat extends React.Component {
   constructor(props) {
@@ -40,7 +37,8 @@ class Chat extends React.Component {
 
   scrollToElementD = () => {
     let messages = document.getElementsByClassName('msg');
-    let topPos = (messages.length && messages[messages.length - 2].offsetTop) || 0;
+    let topPos = (messages.length && messages[messages.length - 1] && messages[messages.length - 1].offsetTop) || 0;
+    console.log('topPos', topPos);
     document.getElementById('scrollable').scrollTop = topPos - 10;
   };
 
@@ -107,7 +105,8 @@ const FixedContainer = styled.div`
   overflow-y: scroll;
   width: 300px;
   background: #21a5b7;
-  border: 3px solid ${({ color }) => color || 'yellow'};
+  // border: 3px solid ${({ color }) => color || 'white'};
+  transition: 0.3s;
 `;
 
 const Posts = styled.ul`
@@ -124,12 +123,15 @@ const Post = styled.li`
 `;
 
 const Header = styled.h3`
-  background-color: ${({ color }) => color || 'yellow'};
+  background-color: ${({ color }) => color || 'white'};
   margin: 0;
   padding: 0;
   cursor: pointer;
   position: fixed;
   width: 300px;
+  border: 1px solid grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 const Img = styled.img`

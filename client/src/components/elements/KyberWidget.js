@@ -1,24 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Form as FinalForm, Field as FinalField } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
 import { Grid, Dialog, Button } from '@material-ui/core';
+import '../../assets/index.css';
 
 const KyberWidget = ({ isOpen, balance, closeModal, network }) => {
+  const _handleFormSubmit = React.useCallback(e => console.log('ADD ETH', e), []);
+
   return (
-    <Dialog open={isOpen}>
-      <Button onClick={() => closeModal(false)} variant="contained" color="primary">
+    <Dialog open={isOpen} padding={1}>
+      <Button className="txt_c" onClick={() => closeModal(false)} xs={2} variant="contained" color="primary">
         x
       </Button>
 
-      <Grid>
-        <Grid>
-          <Text>Enter amount of ETH you want to add:</Text>
-        </Grid>
-        <Grid item>
-          <TextField name="ETH" label="ETH" />
-        </Grid>
-        <Text> Or </Text>
-      </Grid>
+      <FinalForm onSubmit={_handleFormSubmit}>
+        {({ handleSubmit, submitting, pristine }) => (
+          <Grid container onSubmit={handleSubmit} justify="center">
+            <Grid item>
+              <Text>Enter amount of ETH you want to add:</Text>
+            </Grid>
+            <Grid item>
+              <Grid component="form" container onSubmit={handleSubmit} width="100%">
+                <Grid item spacing={4}>
+                  <FinalField name="ETH" component={TextField} placeholder={balance} />
+                </Grid>
+                <Grid item>
+                  <Button type="submit" variant="contained" color="primary">
+                    >
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={6}>
+              <Text> Want more? Use Kyber to swap ERC20 to ETH! </Text>
+            </Grid>
+          </Grid>
+        )}
+      </FinalForm>
       <Grid onClick={closeModal}>
         <Button>Cancel</Button>
         <Widget network={network} />
