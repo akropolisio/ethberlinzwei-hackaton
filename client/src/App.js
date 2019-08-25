@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import getWeb3, { getGanacheWeb3 } from './utils/getWeb3';
 import { initialize0x } from './utils/0x';
-import { Loader } from 'rimble-ui';
+import Box from '3box';
+
 import { solidityLoaderOptions } from '../config/webpack';
 // ^openzeppelin starter kit defaults
 
-import Box from '3box';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-
 import './assets/index.css';
-import { Background, Orders, About, Balance } from './components';
+import { Background, Orders, About, Balance, Loader, Chat } from './components';
 
 import { Button } from '@material-ui/core';
 
@@ -21,6 +20,7 @@ class App extends Component {
     Ox: null,
     accounts: null,
     contract: null,
+    thread: null,
     route: window.location.pathname.replace('/', ''),
   };
 
@@ -64,11 +64,12 @@ class App extends Component {
       const isMetaMask = web3.currentProvider.isMetaMask;
 
       const box = await Box.openBox(accounts[0], web3.currentProvider);
+      const space = await box.openSpace(accounts[0]);
+      const thread = await space.joinThread('unisaur-thread');
 
-      console.log('box', box);
-
+      thread.onUpdate(upd => console.log('thread update', upd));
+      thread.post('hi! ' + new Date().getTime());
       let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
-      console.log('balance', balance);
       balance = web3.utils.fromWei(balance, 'ether');
       let instance = null;
       let instanceWallet = null;
@@ -96,6 +97,7 @@ class App extends Component {
           {
             Ox,
             web3,
+            thread,
             ganacheAccounts,
             accounts,
             balance,
@@ -117,6 +119,7 @@ class App extends Component {
         this.setState({
           Ox,
           web3,
+          thread,
           ganacheAccounts,
           accounts,
           balance,
@@ -164,19 +167,11 @@ class App extends Component {
     this.setState({ tokenOwner: response.toString() === accounts[0].toString() });
   };
 
-  renderLoader() {
-    return (
-      <div className="loader">
-        <Loader size="80px" color="red" />
-        <h3> Loading Web3, accounts, and contract...</h3>
-        <p> Unlock your metamask </p>
-      </div>
-    );
-  }
-
   render() {
+    let { accounts, balance, thread } = this.state;
+
     return !this.state.web3 ? (
-      this.renderLoader()
+      <Loader />
     ) : (
       <Tabs>
         <TabList>
@@ -187,15 +182,12 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
-          <Button variant="contained" color="primary">
-            qweqwe
-          </Button>
           <h2>About</h2>
           <About />
         </TabPanel>
         <TabPanel>
           <h2>Your balances</h2>
-          <Balance />
+          <Balance address={accounts[0]} balance={balance} />
         </TabPanel>
         <TabPanel>
           <h2>Meme driven development</h2>
@@ -205,6 +197,7 @@ class App extends Component {
           <h2>Open Orders</h2>
           <Orders Ox={this.state.Ox} />
         </TabPanel>
+        <Chat thread={thread} />
       </Tabs>
     );
   }

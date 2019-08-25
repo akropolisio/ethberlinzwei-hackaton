@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TextField } from 'final-form-material-ui';
-import { Grid, Dialog, Card, Button, Box } from '@material-ui/core';
+import { Grid, Dialog, Button } from '@material-ui/core';
 
 const KyberWidget = ({ isOpen, balance, closeModal, network }) => {
   return (
@@ -76,7 +76,7 @@ const Flex = styled.div`
   align-items: center;
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
   text-align: center;
 `;
 

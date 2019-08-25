@@ -1,3 +1,3 @@
-import { test_orders, colors } from './mockup';
+import { test_orders, colors, memes } from './mockup';
 
-export { test_orders, colors };
+export { test_orders, colors, memes };
