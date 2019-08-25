@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import '../../assets/animations.css';
-
-const memes = ['Trump', 'Buffet', 'Some french guy'];
+import { memes } from '../../utils';
 
 const Memes = () => {
   return (
     <Playground>
       <Origin className="tooltip" />
       {memes.map((el, id) => (
-        <Meme key={id} className="rotate_meme">
-          {el}
-        </Meme>
+        <Meme key={id} className="rotate_meme" />
       ))}
     </Playground>
   );
@@ -19,7 +16,7 @@ const Memes = () => {
 
 const Origin = styled.span`
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transition: 0.3s;
   width: 50px;
@@ -41,10 +38,10 @@ const Playground = styled.div`
 
 const Meme = styled.p`
   position: absolute;
-  top: calc(50% - 50px);
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 100px;
+  top: calc(20% - 50px);
+  left: calc(40% - 50px);
+  width: 200px;
+  height: 200px;
 `;
 
 export default Memes;

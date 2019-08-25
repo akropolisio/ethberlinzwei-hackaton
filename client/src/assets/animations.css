@@ -40,7 +40,7 @@ body {
 }
 
 .rotate_meme:nth-of-type(3) {
-  background: url('../assets/memes/nouriel1.png');
+  background-image: url('../assets/memes/nouriel1.png');
   transform: rotate(90deg) translateY(-150px) rotate(-90deg);
   animation: rotate-3 10s linear infinite;
   background-position: 56% 100%;
@@ -58,9 +58,12 @@ body {
 }
 
 .rotate_meme:nth-of-type(4) {
-  background: green;
+  background: url('../assets/memes/trump3.png');
   transform: rotate(150deg) translateY(-150px) rotate(-150deg);
   animation: rotate-4 10s linear infinite;
+  background-position: 56% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes rotate-4 {
@@ -73,9 +76,12 @@ body {
 }
 
 .rotate_meme:nth-of-type(5) {
-  background: blue;
+  background: url('../assets/memes/buffett5.png');
   transform: rotate(210deg) translateY(-150px) rotate(-210deg);
   animation: rotate-5 10s linear infinite;
+  background-position: 56% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes rotate-5 {
@@ -88,9 +94,12 @@ body {
 }
 
 .rotate_meme:last-of-type {
-  background: indigo;
+  background-image: url('../assets/memes/nouriel2.png');
   transform: rotate(270deg) translateY(-150px) rotate(-270deg);
   animation: rotate-6 10s linear infinite;
+  background-position: 56% 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @keyframes rotate-6 {
@@ -127,4 +136,13 @@ body {
 }
 
 @keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  40% {
+    transform: translateY(15%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
