@@ -22,7 +22,7 @@ const KyberWidget = ({ isOpen, balance, closeModal, handleDeposit, network }) =>
             </Grid>
             <Grid item>
               <Grid component="form" container onSubmit={handleSubmit} width="100%">
-                <Grid item spacing={4}>
+                <Grid item>
                   <FinalField name="ETH" component={TextField} placeholder={balance} />
                 </Grid>
                 <Grid item>

@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import getWeb3, { getGanacheWeb3 } from './utils/getWeb3';
+import { initialize0x } from './utils/0x';
+import styled from 'styled-components';
 import Box from '3box';
 
+import abi from './assets/abi.json';
 import { solidityLoaderOptions } from '../config/webpack';
 // ^openzeppelin starter kit defaults
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './assets/index.css';
-import { Background, Orders, About, Balance, Loader, Chat } from './components';
+import { Orders, About, Balance, Loader, Chat } from './components';
 
 class App extends Component {
   state = {
@@ -33,14 +36,7 @@ class App extends Component {
 
   componentDidMount = async () => {
     const hotLoaderDisabled = solidityLoaderOptions.disabled;
-    // let Counter = {};
-    // let Wallet = {};
-    // try {
-    //   Counter = require('../../contracts/Counter.sol');
-    //   Wallet = require('../../contracts/Wallet.sol');
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    let CDP = {};
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
@@ -52,62 +48,48 @@ class App extends Component {
       }
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-      console.log('accounts', accounts);
-      const user = await Box.getProfile(accounts[0]);
-      console.log('user', user);
+
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const networkType = await web3.eth.net.getNetworkType();
       const isMetaMask = web3.currentProvider.isMetaMask;
 
-      const box = await Box.openBox(accounts[0], web3.currentProvider);
-      const space = await box.openSpace(accounts[0]);
-      const thread = await space.joinThread('unisaur-thread');
-      thread.onUpdate(upd => console.log('thread updated'));
+      //3box
+      let thread;
+      try {
+        const box = await Box.openBox(accounts[0], web3.currentProvider);
+        const space = await box.openSpace(accounts[0]);
+        thread = await space.joinThread('unisaur-thread');
+        thread.onUpdate(upd => console.log('thread updated'));
+      } catch (e) {
+        console.log('failed to init 3box message chat');
+      }
 
       let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
       balance = web3.utils.fromWei(balance, 'ether');
       let instance = null;
       let instanceWallet = null;
-      // let deployedNetwork = null;
-      // if (Counter.networks) {
-      //   deployedNetwork = Counter.networks[networkId.toString()];
-      //   if (deployedNetwork) {
-      //     instance = new web3.eth.Contract(Counter.abi, deployedNetwork && deployedNetwork.address);
-      //   }
-      // }
-      // console.log(instance);
-      // if (Wallet.networks) {
-      //   deployedNetwork = Wallet.networks[networkId.toString()];
-      //   if (deployedNetwork) {
-      //     instanceWallet = new web3.eth.Contract(Wallet.abi, deployedNetwork && deployedNetwork.address);
-      //   }
-      // }
+      let deployedNetwork = null;
+      CDP = new web3.eth.Contract(abi, '0x98E35E5063e49a10Ec039aBB14426dB1903EA870');
 
-      if (instance || instanceWallet) {
+      const Ox = initialize0x();
+
+      if (CDP) {
         // Set web3, accounts, and contract to the state, and then proceed with an
         // example of interacting with the contract's methods.
-        this.setState(
-          {
-            web3,
-            thread,
-            ganacheAccounts,
-            accounts,
-            balance,
-            networkId,
-            networkType,
-            hotLoaderDisabled,
-            isMetaMask,
-            contract: instance,
-            wallet: instanceWallet,
-          },
-          () => {
-            this.refreshValues(instance, instanceWallet);
-            setInterval(() => {
-              this.refreshValues(instance, instanceWallet);
-            }, 5000);
-          },
-        );
+        this.setState({
+          Ox,
+          web3,
+          CDP,
+          thread,
+          ganacheAccounts,
+          accounts,
+          balance,
+          networkId,
+          networkType,
+          hotLoaderDisabled,
+          isMetaMask,
+        });
       } else {
         this.setState({
           web3,
@@ -160,7 +142,7 @@ class App extends Component {
   };
 
   render() {
-    let { accounts, balance, thread } = this.state;
+    let { accounts, balance, thread, CDP, web3 } = this.state;
 
     return !this.state.web3 ? (
       <Loader />
@@ -169,21 +151,19 @@ class App extends Component {
         <TabList>
           <Tab>About</Tab>
           <Tab>Balance</Tab>
-          <Tab>Memes</Tab>
           <Tab>Orders</Tab>
         </TabList>
 
         <TabPanel>
-          <h2>About</h2>
+          <H1>
+            Unisaur.cz is DEX+Money Market where you can create and trade Facebook-priced tokens (or any other assets
+            from NASDAQ/NYCE/etc){' '}
+          </H1>
           <About />
         </TabPanel>
         <TabPanel>
           <h2>Your balances</h2>
-          <Balance address={accounts[0]} balance={balance} />
-        </TabPanel>
-        <TabPanel>
-          <h2>Meme driven development</h2>
-          <Background />
+          <Balance web3={web3} CDP={CDP} address={accounts[0]} balance={balance} />
         </TabPanel>
         <TabPanel>
           <Orders />
@@ -193,5 +173,10 @@ class App extends Component {
     );
   }
 }
+
+const H1 = styled.h1`
+  z-index: 1;
+  color: green;
+`;
 
 export default App;
