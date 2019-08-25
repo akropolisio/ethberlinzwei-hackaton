@@ -395,11 +395,11 @@
       }
     },
     "Market": {
-      "address": "0x71694e6cD46426b80DBff551f8D040cBD50fF5aB",
-      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612b55806100306000396000f3fe",
-      "bodyBytecodeHash": "fda5f3b75e99edfa34a5fa424222fe4b466ed22cd025db4661555d99f0b2bab2",
-      "localBytecodeHash": "348800d067a13cfab61d77c86a2c58a27fd0477d595916ce4d1b5ff7271cfd12",
-      "deployedBytecodeHash": "348800d067a13cfab61d77c86a2c58a27fd0477d595916ce4d1b5ff7271cfd12",
+      "address": "0xa93eAe300519CA8D9129CB867A8AEff41a0940Ab",
+      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612ad8806100306000396000f3fe",
+      "bodyBytecodeHash": "40c01f3ca54ca62146aff47dbbaeae42a6c8fb564782f548032dacff0e3da523",
+      "localBytecodeHash": "33220a365aae8f42fd55d5e5b4d8e71cb608fdba0eb668f462c8f1c30bc6ffd9",
+      "deployedBytecodeHash": "33220a365aae8f42fd55d5e5b4d8e71cb608fdba0eb668f462c8f1c30bc6ffd9",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -548,18 +548,18 @@
         {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
-          "label": "tokenPriceOracle",
-          "astId": 3545,
-          "type": "t_mapping<t_uint256>",
-          "src": "427:50:25"
+          "label": "ethCurrentPrice",
+          "astId": 3548,
+          "type": "t_uint256",
+          "src": "481:31:25"
         },
         {
           "contract": "Market",
           "path": "contracts/Market/Market.sol",
-          "label": "ethCurrentPrice",
+          "label": "tokenPriceOracle",
           "astId": 3552,
-          "type": "t_uint256",
-          "src": "535:30:25"
+          "type": "t_mapping<t_uint256>",
+          "src": "516:48:25"
         },
         {
           "contract": "Market",
@@ -567,7 +567,7 @@
           "label": "collateralRatio",
           "astId": 3554,
           "type": "t_uint256",
-          "src": "570:27:25"
+          "src": "569:28:25"
         },
         {
           "contract": "Market",
@@ -593,140 +593,7 @@
         "hasInitialValuesInDeclarations": false,
         "uninitializedBaseContracts": [],
         "storageUncheckedVars": [],
-        "storageDiff": [
-          {
-            "action": "insert",
-            "updated": {
-              "index": 3,
-              "contract": "ChainlinkClient",
-              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
-              "label": "ens",
-              "astId": 1908,
-              "type": "t_address",
-              "src": "1078:24:15"
-            }
-          },
-          {
-            "action": "insert",
-            "updated": {
-              "index": 4,
-              "contract": "ChainlinkClient",
-              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
-              "label": "ensNode",
-              "astId": 1910,
-              "type": "t_bytes32",
-              "src": "1106:23:15"
-            }
-          },
-          {
-            "action": "insert",
-            "updated": {
-              "index": 5,
-              "contract": "ChainlinkClient",
-              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
-              "label": "link",
-              "astId": 1912,
-              "type": "t_address",
-              "src": "1133:31:15"
-            }
-          },
-          {
-            "action": "insert",
-            "updated": {
-              "index": 6,
-              "contract": "ChainlinkClient",
-              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
-              "label": "oracle",
-              "astId": 1914,
-              "type": "t_address",
-              "src": "1168:40:15"
-            }
-          },
-          {
-            "action": "insert",
-            "updated": {
-              "index": 7,
-              "contract": "ChainlinkClient",
-              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
-              "label": "requests",
-              "astId": 1917,
-              "type": "t_uint256",
-              "src": "1212:28:15"
-            }
-          },
-          {
-            "action": "append",
-            "updated": {
-              "index": 8,
-              "contract": "ChainlinkClient",
-              "path": "chainlink/v0.5/contracts/ChainlinkClient.sol",
-              "label": "pendingRequests",
-              "astId": 1921,
-              "type": "t_mapping<t_address>",
-              "src": "1244:51:15"
-            }
-          },
-          {
-            "action": "delete",
-            "original": {
-              "index": 6,
-              "contract": "Market",
-              "path": "contracts/Market/Market.sol",
-              "label": "fakePriceOracle",
-              "astId": 1719,
-              "type": "t_mapping<t_uint256>",
-              "src": "353:49:15"
-            }
-          },
-          {
-            "action": "append",
-            "updated": {
-              "index": 12,
-              "contract": "Market",
-              "path": "contracts/Market/Market.sol",
-              "label": "tokenPriceOracle",
-              "astId": 3545,
-              "type": "t_mapping<t_uint256>",
-              "src": "427:50:25"
-            }
-          },
-          {
-            "action": "append",
-            "updated": {
-              "index": 13,
-              "contract": "Market",
-              "path": "contracts/Market/Market.sol",
-              "label": "ethCurrentPrice",
-              "astId": 3552,
-              "type": "t_uint256",
-              "src": "535:30:25"
-            }
-          },
-          {
-            "action": "append",
-            "updated": {
-              "index": 15,
-              "contract": "Market",
-              "path": "contracts/Market/Market.sol",
-              "label": "link",
-              "astId": 3556,
-              "type": "t_address",
-              "src": "601:12:25"
-            }
-          },
-          {
-            "action": "append",
-            "updated": {
-              "index": 16,
-              "contract": "Market",
-              "path": "contracts/Market/Market.sol",
-              "label": "oracle",
-              "astId": 3558,
-              "type": "t_address",
-              "src": "617:14:25"
-            }
-          }
-        ]
+        "storageDiff": []
       }
     },
     "Weth": {
@@ -1120,11 +987,11 @@
       }
     },
     "TokenBorrowerFactory": {
-      "address": "0xF61BDf2FF0b8F292dcE6D2e65cAab9A34f0f8f7c",
-      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612c1a806100266000396000f3fe",
-      "bodyBytecodeHash": "076a5b97931302f5fa84951bd372694257a3a0b76237211502f23f9ee6811773",
-      "localBytecodeHash": "b2feb40ec7917cecc7d121b94c01fdd4914f5bd2199a4c0a97c67904bc28eb94",
-      "deployedBytecodeHash": "b2feb40ec7917cecc7d121b94c01fdd4914f5bd2199a4c0a97c67904bc28eb94",
+      "address": "0x7aD2d10Dbff989E2CB953Bb2cF42740c7FeF9fdC",
+      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612669806100266000396000f3fe",
+      "bodyBytecodeHash": "9afd07863486badcd26f4cd28ca84f786f9540c473ec19eb55cce9af1256d3d2",
+      "localBytecodeHash": "96fca04014a67b07056deda874bf976dfdcc27e3fa6a524de02c441a3be51a22",
+      "deployedBytecodeHash": "96fca04014a67b07056deda874bf976dfdcc27e3fa6a524de02c441a3be51a22",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -1184,7 +1051,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "wethAddress",
-          "astId": 4740,
+          "astId": 4742,
           "type": "t_address",
           "src": "290:19:30"
         },
@@ -1192,7 +1059,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "fbMoneyMarket",
-          "astId": 4742,
+          "astId": 4744,
           "type": "t_address",
           "src": "313:29:30"
         },
@@ -1200,7 +1067,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "token",
-          "astId": 4744,
+          "astId": 4746,
           "type": "t_address",
           "src": "346:12:30"
         },
@@ -1208,7 +1075,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "borrowers",
-          "astId": 4748,
+          "astId": 4750,
           "type": "t_mapping<t_address>",
           "src": "365:42:30"
         }
@@ -1256,6 +1123,41 @@
         "address": "0xD56F6A472eAEB923489692798dDeA36C385F6Ab5",
         "version": "1.0.2",
         "implementation": "0x71694e6cD46426b80DBff551f8D040cBD50fF5aB",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x2d258C74dfcA7Af5640B0E30983EB614cfADcA4c",
+        "version": "1.0.2",
+        "implementation": "0xA7d30b503799bC192d636247f6c18d240Bb94A2D",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xcc6E3BE52e34Ea76133c5540c57EDb2BBBBaB3F9",
+        "version": "1.0.2",
+        "implementation": "0x46e8ab5713373cFb5aEDC894DAe421eEa60FB48d",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xd2b31cEA406CA6E9dD1EB730f7155a2528D520e5",
+        "version": "1.0.2",
+        "implementation": "0x02fd4f9Ae49683E4d158197eA8b92ba6d284Ce9d",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x8cCEB889eBA97C9dD9e5ba4C49eb75f2c469b163",
+        "version": "1.0.2",
+        "implementation": "0xf76bCb78dAE259bA8925727774f868B9fB51778C",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x4f7A45E7f48dDE1BEc4F1960e284B74f646d1d6F",
+        "version": "1.0.2",
+        "implementation": "0xa93eAe300519CA8D9129CB867A8AEff41a0940Ab",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }
@@ -1342,6 +1244,48 @@
         "address": "0x13Ca66A00c17F00dE8c193BA635393B6Fd5a9Bbd",
         "version": "1.0.2",
         "implementation": "0xe70733e6B9928ED50740Cb5631b497c99C28d5E6",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xcc7122e59770b8F2BCc27E69410D8e0995648bD5",
+        "version": "1.0.2",
+        "implementation": "0x6f55E6441a489B71AC814cB93EF0CD2976766b68",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x62D0b8F01ce201c3D7F96141080aEDa733f28c82",
+        "version": "1.0.2",
+        "implementation": "0x05E777f5CA02687c1b927AAD9B499b918800C0D5",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xD6E155137E97D32a3374E69F85A8f0AED3241f3b",
+        "version": "1.0.2",
+        "implementation": "0x05E777f5CA02687c1b927AAD9B499b918800C0D5",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xC9cf00d5BF60CF05BB6bF96Bc3DE9c5Da1b4fF15",
+        "version": "1.0.2",
+        "implementation": "0x05E777f5CA02687c1b927AAD9B499b918800C0D5",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x327B57167f69De32480De224850a927F87877F27",
+        "version": "1.0.2",
+        "implementation": "0x7aD2d10Dbff989E2CB953Bb2cF42740c7FeF9fdC",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xddbC33F4CC5D47b60F856F5DC689bbeb09dADb24",
+        "version": "1.0.2",
+        "implementation": "0x7aD2d10Dbff989E2CB953Bb2cF42740c7FeF9fdC",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }

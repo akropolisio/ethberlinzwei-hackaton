@@ -39,26 +39,16 @@ contract FBCDP is Initializable {
     bool supplyStatus = fbMoneyMarket.supply(address(weth), msg.value);
     
     require(supplyStatus == true, "supply failed");
+  }
 
-    
-    uint collateralRatio = fbMoneyMarket.collateralRatio();
-    (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
-    
-    require(status == true, "calculating account values failed");
-
-    uint availableBorrow = findAvailableBorrow(totalSupply, totalBorrow, collateralRatio);
-
-    uint assetPrice = fbMoneyMarket.assetPrices(address(borrowedToken));
-   
-    uint tokenAmount = availableBorrow.mul(expScale).div(assetPrice);
-
+  function borrow(address account, address borrowToken, uint256 tokenAmount) public {
     //minting tokens
-    bool borrowStatus = fbMoneyMarket.borrow(address(borrowedToken), tokenAmount);
+    bool borrowStatus = fbMoneyMarket.borrow(account, address(borrowedToken), address(weth), tokenAmount);
+    
     require(borrowStatus == true, "borrow failed");
 
     uint borrowedTokenBalance = borrowedToken.balanceOf(address(this));
     borrowedToken.transfer(owner, borrowedTokenBalance);
-
   }
 
   /* @dev the factory contract will transfer tokens necessary to repay */
@@ -73,7 +63,7 @@ contract FBCDP is Initializable {
     (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
     require(status == true, "calculating account values failed");
 
-    uint amountToWithdraw;
+    /*uint amountToWithdraw;
     if (totalBorrow == 0) {
       amountToWithdraw = uint(-1);
     } else {
@@ -83,31 +73,11 @@ contract FBCDP is Initializable {
     bool withdrawStatus = fbMoneyMarket.withdraw(address(weth), amountToWithdraw);
     require(withdrawStatus == true, "withdrawal failed");
 
-    /* ---------- return ether to user ---------*/
+   
     uint wethBalance = weth.balanceOf(address(this));
     weth.withdraw(wethBalance);
-    owner.transfer(address(this).balance);
-  }
+    owner.transfer(address(this).balance);*/
 
-
-  /* @dev returns borrow value in eth scaled to 10e18 */
-  function findAvailableBorrow(uint currentSupplyValue, uint currentBorrowValue, uint collateralRatio) public pure returns (uint) {
-    uint totalPossibleBorrow = currentSupplyValue.mul(expScale).div(collateralRatio.add(collateralRatioBuffer));
-    if ( totalPossibleBorrow > currentBorrowValue ) {
-      return totalPossibleBorrow.sub(currentBorrowValue).div(expScale);
-    } else {
-      return 0;
-    }
-  }
-
-  /* @dev returns available withdrawal in eth scale to 10e18 */
-  function findAvailableWithdrawal(uint currentSupplyValue, uint currentBorrowValue, uint collateralRatio) public pure returns (uint) {
-    uint requiredCollateralValue = currentBorrowValue.mul(collateralRatio.add(collateralRatioBuffer)).div(expScale);
-    if ( currentSupplyValue > requiredCollateralValue ) {
-      return currentSupplyValue.sub(requiredCollateralValue).div(expScale);
-    } else {
-      return 0;
-    }
   }
 
   /* @dev it is necessary to accept eth to unwrap weth */

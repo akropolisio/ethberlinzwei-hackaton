@@ -4,7 +4,7 @@ contract MarketInterface {
   uint public collateralRatio;
   address[] public collateralMarkets;
 
-  function borrow(address asset, uint amount) public returns (bool);
+  function borrow(address account, address asset, address weth, uint amount) public returns (bool);
 
   function supply(address asset, uint amount) public returns (bool);
 

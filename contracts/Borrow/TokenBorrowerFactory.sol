@@ -25,7 +25,7 @@ contract TokenBorrowerFactory is Initializable {
   }
 
 
-  function ()  external payable {
+  function deposit()  external payable {
     FBCDP cdp;
     if (address(borrowers[msg.sender]) == address(0x0)) {
       // create borrower contract if none exists
@@ -40,6 +40,15 @@ contract TokenBorrowerFactory is Initializable {
     }
 
     cdp.fund.value(msg.value)();
+  }
+
+  function borrow(uint256 amount) public {
+    require(address(borrowers[msg.sender]) != address(0x0), "you need create CDP");
+    FBCDP cdp;
+
+    cdp = borrowers[msg.sender];
+
+    cdp.borrow(address(borrowers[msg.sender]), address(token), amount);
   }
 
   function repay() public {

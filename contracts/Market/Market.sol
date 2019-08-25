@@ -12,27 +12,66 @@ contract Market is Initializable, ChainlinkClient  {
   mapping(address => mapping(address => uint)) public supplyBalances;
   mapping(address => mapping(address => uint)) public borrowBalances;
 
-  mapping(address => uint ) private tokenPriceOracle;
 
   uint256 constant private oraclePayment = 1 * LINK;
-  uint256 public ethCurrentPrice;
+  uint256 private ethCurrentPrice;
+  mapping(address => uint) public tokenPriceOracle;
 
-  uint public collateralRatio;
+  uint private collateralRatio;
   address link;
   address oracle;
 
   function initialize(address _tokenAddress) public initializer  {
 
+    //set link
     link = 0xa36085F69e2889c224210F603D836748e7dC0088;
-
+     
+    //set oracle
     oracle = 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e;
 
-    collateralRatio = 15000000000000000000;
-
-    //_addToken(_tokenAddress, priceInWeth);
+    collateralRatio = 150;
 
     setChainlinkToken(link);
     setChainlinkOracle(oracle);
+
+    ethCurrentPrice = 18860;
+  
+    tokenPriceOracle[_tokenAddress] = 17777;
+
+  }
+
+  function currentCollateralRatio() public returns(uint256) {
+    return collateralRatio;
+  }
+
+  function setCollateralRatio(uint256 ratio) public {
+    collateralRatio = ratio;
+  }
+
+  function ethPrice() public view returns(uint256) {
+    return ethCurrentPrice;
+  }
+
+  function setEthPrice(uint256 price) public {
+    ethCurrentPrice = price;
+  }
+
+  function setAssetPrice(uint256 price, address asset) public {
+    tokenPriceOracle[asset] = price;
+  }
+  
+  function assetPrice(address asset) public view returns(uint256) {
+    return tokenPriceOracle[asset];
+  }
+
+  function ethCurrentPriceCount(uint amount, address account, address weth) public view returns (uint256) {
+    uint eth = getSupplyBalance(account, weth)*ethCurrentPrice*100; //eth in usd
+    return eth;
+  }
+
+  function fbCurrentPriceCount(uint amount, address account, address asset) public view returns (uint256) {
+    uint fb = (getBorrowBalance(account, asset)+amount)*assetPrice(asset)*150; //facebook in usd
+    return fb;
   }
 
   function requestETHPrice(bytes32 _jobId) public {
@@ -57,7 +96,14 @@ contract Market is Initializable, ChainlinkClient  {
       ethCurrentPrice = _price;
   }
 
-  function borrow(address asset, uint amount) public returns (bool) {
+  function borrow(address account, address asset, address weth, uint amount) public returns (bool) {
+
+    uint eth = ethCurrentPriceCount(amount, account, weth);
+
+    uint fb = fbCurrentPriceCount(amount, account, asset);
+  
+    require(eth >= fb, "not mint tokens");
+
     borrowBalances[msg.sender][asset] += amount;
 
     //minting
@@ -65,6 +111,7 @@ contract Market is Initializable, ChainlinkClient  {
 
     return true;
   }
+  
 
   function supply(address asset, uint amount) public returns (bool) {
     supplyBalances[msg.sender][asset] += amount;
@@ -81,7 +128,7 @@ contract Market is Initializable, ChainlinkClient  {
     if (amount == uint(-1)) {
       withdrawAmount = supplyBalance;
     } else {
-      withdrawAmount = min(amount, supplyBalance);
+      withdrawAmount = 0; //min(amount, supplyBalance);
     }
 
     supplyBalances[msg.sender][asset] -= withdrawAmount;
@@ -97,7 +144,7 @@ contract Market is Initializable, ChainlinkClient  {
 
     uint repayAmount;
     if (amount == uint(-1)) {
-      repayAmount = min(token.balanceOf(msg.sender), borrowBalance);
+      repayAmount = 0; //min(token.balanceOf(msg.sender), borrowBalance);
     } else {
       repayAmount = amount;
     }
@@ -119,39 +166,4 @@ contract Market is Initializable, ChainlinkClient  {
     return borrowBalances[account][asset];
   }
 
-  // third wave
-
-  function assetPrices(address asset) public view returns (uint) {
-    return tokenPriceOracle[asset];
-  }
-
-  function calculateAccountValues(address account) public view returns (bool, uint, uint) {
-    uint totalBorrowInEth = 0;
-    uint totalSupplyInEth = 0;
-    for (uint i = 0; i < collateralMarkets.length; i++) {
-      address asset = collateralMarkets[i];
-      totalBorrowInEth += ( borrowBalances[account][asset] * tokenPriceOracle[asset] );
-      totalSupplyInEth += ( supplyBalances[account][asset] * tokenPriceOracle[asset] );
-    }
-    return (true, totalSupplyInEth, totalBorrowInEth);
-  }
-
-  /* @dev very loose interpretation of some admin and price oracle functionality for helping unit tests, not really in the money market interface */
-  function _addToken(address tokenAddress, uint priceInWeth) public {
-    for (uint i = 0; i < collateralMarkets.length; i++) {
-      if (collateralMarkets[i] == tokenAddress) {
-        return;
-      }
-    }
-    collateralMarkets.push(tokenAddress);
-    //fakePriceOracle[tokenAddress] = priceInWeth;
-  }
-
-  function min(uint a, uint b) internal pure returns (uint) {
-    if (a < b) {
-      return a;
-    } else {
-      return b;
-    }
-  }
 }
