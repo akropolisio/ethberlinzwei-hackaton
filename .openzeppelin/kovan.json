@@ -1109,6 +1109,13 @@
         "implementation": "0x27f97ceaD9d4DC9936e008c0ec7C0947E81A1D9A",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
+      },
+      {
+        "address": "0xECaB16BdA9C6E34BF3CFb1895929610dFf4CAf80",
+        "version": "1.0.2",
+        "implementation": "0x2981b9F766Ac4F3CAe07B5f73089992b2B605D14",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
       }
     ],
     "unizaur/Market": [
@@ -1184,6 +1191,13 @@
       },
       {
         "address": "0x484a659D4C12B00B6E2c09246387aCC460C44Ca4",
+        "version": "1.0.2",
+        "implementation": "0xb9CF21bA37e4112495E8a4E4BF27087692BDb5A8",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x3CE0EDBCa9c30FbDAb40Ca2c528bDa5cd256Da88",
         "version": "1.0.2",
         "implementation": "0xb9CF21bA37e4112495E8a4E4BF27087692BDb5A8",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
@@ -1333,6 +1347,13 @@
       },
       {
         "address": "0x98E35E5063e49a10Ec039aBB14426dB1903EA870",
+        "version": "1.0.2",
+        "implementation": "0x234f7562C1E4D69776827d478D903911059Fb597",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x34598D9fb47fbE512AFbD4a81D8a5F7e0c587312",
         "version": "1.0.2",
         "implementation": "0x234f7562C1E4D69776827d478D903911059Fb597",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
