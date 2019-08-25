@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import getWeb3, { getGanacheWeb3 } from './utils/getWeb3';
-import { initialize0x } from './utils/0x';
 import styled from 'styled-components';
 import Box from '3box';
 
 import abi from './assets/abi.json';
-import { solidityLoaderOptions } from '../config/webpack';
-// ^openzeppelin starter kit defaults
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -17,7 +14,6 @@ class App extends Component {
   state = {
     storageValue: 0,
     web3: null,
-    Ox: null,
     accounts: null,
     contract: null,
     thread: null,
@@ -35,7 +31,6 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    const hotLoaderDisabled = solidityLoaderOptions.disabled;
     let CDP = {};
     try {
       // Get network provider and web3 instance.
@@ -67,18 +62,12 @@ class App extends Component {
 
       let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
       balance = web3.utils.fromWei(balance, 'ether');
-      let instance = null;
-      let instanceWallet = null;
-      let deployedNetwork = null;
       CDP = new web3.eth.Contract(abi, '0x98E35E5063e49a10Ec039aBB14426dB1903EA870');
-
-      const Ox = initialize0x();
 
       if (CDP) {
         // Set web3, accounts, and contract to the state, and then proceed with an
         // example of interacting with the contract's methods.
         this.setState({
-          Ox,
           web3,
           CDP,
           thread,
@@ -87,7 +76,6 @@ class App extends Component {
           balance,
           networkId,
           networkType,
-          hotLoaderDisabled,
           isMetaMask,
         });
       } else {
@@ -99,7 +87,6 @@ class App extends Component {
           balance,
           networkId,
           networkType,
-          hotLoaderDisabled,
           isMetaMask,
         });
       }
