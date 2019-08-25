@@ -5,8 +5,8 @@ import { TextField } from 'final-form-material-ui';
 import { Grid, Dialog, Button } from '@material-ui/core';
 import '../../assets/index.css';
 
-const KyberWidget = ({ isOpen, balance, closeModal, network }) => {
-  const _handleFormSubmit = React.useCallback(e => console.log('ADD ETH', e), []);
+const KyberWidget = ({ isOpen, balance, closeModal, handleDeposit, network }) => {
+  const _handleFormSubmit = React.useCallback(e => handleDeposit(e), []);
 
   return (
     <Dialog open={isOpen} padding={1}>
@@ -47,9 +47,8 @@ const KyberWidget = ({ isOpen, balance, closeModal, network }) => {
 };
 
 const Widget = ({ network }) => {
-  console.log('network', network);
   const link = `https://widget.kyber.network/v0.7.1/?type=swap&mode=iframe&callback=https%3A%2F%2Fkyberpay-sample.knstats.com%2Fcallback&paramForwarding=true&network=${network ||
-    'ropsten'}&lang=en&defaultPair=ETH_DAI`;
+    'kovan'}&lang=en&defaultPair=ETH_DAI`;
   return (
     <KyberLink
       href={link}
