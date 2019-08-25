@@ -11,7 +11,7 @@ class Chat extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      isUp: false,
+      isUp: true,
       messages: [],
     };
   }
@@ -99,14 +99,14 @@ const Form = ({ thread }) => {
 const FixedContainer = styled.div`
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: ${({ isUp }) => (isUp && '0') || '10px'};
   height: ${({ isUp }) => (isUp && '400px') || 'unset'};
   max-height: 400px;
   overflow-y: scroll;
   width: 300px;
   background: #21a5b7;
   // border: 3px solid ${({ color }) => color || 'white'};
-  transition: 0.3s;
+  transition: 0.3s; 
 `;
 
 const Posts = styled.ul`
@@ -140,9 +140,13 @@ const Img = styled.img`
 `;
 const Input = styled.div`
   position: fixed;
-  background-color: #ffffff99;
+  background-color: #ffffffcc;
   bottom: 0;
   right: 0;
+  border: 1px solid grey;
+  padding: 0 1em
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 export default Chat;
