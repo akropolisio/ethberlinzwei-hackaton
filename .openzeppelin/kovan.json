@@ -395,11 +395,11 @@
       }
     },
     "Market": {
-      "address": "0xa93eAe300519CA8D9129CB867A8AEff41a0940Ab",
-      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612ad8806100306000396000f3fe",
-      "bodyBytecodeHash": "40c01f3ca54ca62146aff47dbbaeae42a6c8fb564782f548032dacff0e3da523",
-      "localBytecodeHash": "33220a365aae8f42fd55d5e5b4d8e71cb608fdba0eb668f462c8f1c30bc6ffd9",
-      "deployedBytecodeHash": "33220a365aae8f42fd55d5e5b4d8e71cb608fdba0eb668f462c8f1c30bc6ffd9",
+      "address": "0x0f9A927EcFcc97dCce9c3F7bE5d48C5A122F8D22",
+      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612bb9806100306000396000f3fe",
+      "bodyBytecodeHash": "055d54cb0fc0462cb9ceff11b6d2e2c09957d3f4a2e3e2eac39935bcc367a454",
+      "localBytecodeHash": "ee7a40685056d30868f2e267baf31fe735dbac92bc8036858c3a569a4074bf18",
+      "deployedBytecodeHash": "ee7a40685056d30868f2e267baf31fe735dbac92bc8036858c3a569a4074bf18",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -987,11 +987,11 @@
       }
     },
     "TokenBorrowerFactory": {
-      "address": "0x7aD2d10Dbff989E2CB953Bb2cF42740c7FeF9fdC",
-      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612669806100266000396000f3fe",
-      "bodyBytecodeHash": "9afd07863486badcd26f4cd28ca84f786f9540c473ec19eb55cce9af1256d3d2",
-      "localBytecodeHash": "96fca04014a67b07056deda874bf976dfdcc27e3fa6a524de02c441a3be51a22",
-      "deployedBytecodeHash": "96fca04014a67b07056deda874bf976dfdcc27e3fa6a524de02c441a3be51a22",
+      "address": "0x99eeA3dC32fd94F7b75e81Ed024E0EA5d7034e51",
+      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612cd6806100266000396000f3fe",
+      "bodyBytecodeHash": "93814cef18378c21a58c8f6f88aaceb7fea43960942759300adca9a330ac22ff",
+      "localBytecodeHash": "ff74c6ab500006764c0d58042d0aba2a8c2aa87b7fd3cd9c5d091baa1196b430",
+      "deployedBytecodeHash": "ff74c6ab500006764c0d58042d0aba2a8c2aa87b7fd3cd9c5d091baa1196b430",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -1051,7 +1051,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "wethAddress",
-          "astId": 4742,
+          "astId": 4831,
           "type": "t_address",
           "src": "290:19:30"
         },
@@ -1059,7 +1059,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "fbMoneyMarket",
-          "astId": 4744,
+          "astId": 4833,
           "type": "t_address",
           "src": "313:29:30"
         },
@@ -1067,7 +1067,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "token",
-          "astId": 4746,
+          "astId": 4835,
           "type": "t_address",
           "src": "346:12:30"
         },
@@ -1075,7 +1075,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "borrowers",
-          "astId": 4750,
+          "astId": 4839,
           "type": "t_mapping<t_address>",
           "src": "365:42:30"
         }
@@ -1158,6 +1158,13 @@
         "address": "0x4f7A45E7f48dDE1BEc4F1960e284B74f646d1d6F",
         "version": "1.0.2",
         "implementation": "0xa93eAe300519CA8D9129CB867A8AEff41a0940Ab",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x2678947b9DF4EB9E9721BEDBb68C7477394b2f13",
+        "version": "1.0.2",
+        "implementation": "0x0f9A927EcFcc97dCce9c3F7bE5d48C5A122F8D22",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }
@@ -1286,6 +1293,13 @@
         "address": "0xddbC33F4CC5D47b60F856F5DC689bbeb09dADb24",
         "version": "1.0.2",
         "implementation": "0x7aD2d10Dbff989E2CB953Bb2cF42740c7FeF9fdC",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xF22384A4165ccBc9972bE152401De204cE9cAF3c",
+        "version": "1.0.2",
+        "implementation": "0x99eeA3dC32fd94F7b75e81Ed024E0EA5d7034e51",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }

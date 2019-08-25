@@ -51,13 +51,10 @@ contract TokenBorrowerFactory is Initializable {
     cdp.borrow(amount);
   }
 
-  function repay() public {
+  function repay(uint256 amount) public {
     FBCDP cdp = borrowers[msg.sender];
     uint allowance = token.allowance(msg.sender, address(this));
-    uint borrowBalance = fbMoneyMarket.getBorrowBalance(address(cdp), address(token));
-    uint userTokenBalance = token.balanceOf(msg.sender);
-    uint transferAmount = min(min(allowance, borrowBalance), userTokenBalance);
-
+    uint transferAmount = amount;
     token.transferFrom(msg.sender, address(cdp), transferAmount);
     cdp.repay();
   }
