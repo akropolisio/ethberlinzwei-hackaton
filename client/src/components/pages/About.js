@@ -6,7 +6,7 @@ import { colors } from '../../utils';
 
 class About extends React.Component {
   renderTriangles = () => {
-    return Array.from(Array(10)).map((el, i) => {
+    return Array.from(Array(50)).map((el, i) => {
       let top = Math.ceil(Math.random() * 90);
       let left = Math.ceil(Math.random() * 90);
       let w = Math.ceil(Math.random() * 200);
@@ -16,7 +16,7 @@ class About extends React.Component {
     });
   };
   renderCircles = () => {
-    return Array.from(Array(10)).map((el, i) => {
+    return Array.from(Array(15)).map((el, i) => {
       let top = Math.ceil(Math.random() * 90);
       let left = Math.ceil(Math.random() * 90);
       let w = Math.ceil(Math.random() * 100);
@@ -26,8 +26,8 @@ class About extends React.Component {
     });
   };
   renderAngles = () => {
-    return Array.from(Array(20)).map((el, i) => {
-      let top = Math.ceil(Math.random() * 30);
+    return Array.from(Array(50)).map((el, i) => {
+      let top = Math.ceil(Math.random() * 90);
       let left = Math.ceil(Math.random() * 90);
       let w = 1 + Math.ceil(Math.random() * 10);
       let h = 5 + Math.ceil(Math.random() * 400);
