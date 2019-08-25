@@ -36,11 +36,20 @@ class Balance extends React.Component {
     this.props.CDP.methods.withdraw(amount * BN(1000000000000000000).toFixed()).send({ from: this.props.address });
   };
   // handleWithdraw = e => console.log('Withdraw Unimplemented', e);
-  handlePayback = e => console.log('Payback Unimplemented', e);
-  // handlePayback = e => this.props.CDP.methods
-  // .repay()
-  // .send({ from: this.props.address, value: amount * BN(1000000000000000000).toFixed() });
-  handleGenerate = e => console.log('Generate Unimplemented', e);
+  // handlePayback = e => console.log('Payback Unimplemented', e);
+  // handleGenerate = e => console.log('Generate Unimplemented', e);
+  handlePayback = ({ amount }) => {
+    let BN = this.props.web3.utils.BN;
+    this.props.CDP.methods
+      .repay()
+      .send({ from: this.props.address, value: amount * BN(1000000000000000000).toFixed() });
+  };
+  handleGenerate = ({ amount }) => {
+    let BN = this.props.web3.utils.BN;
+    this.props.CDP.methods
+      .borrow()
+      .send({ from: this.props.address, value: amount * BN(1000000000000000000).toFixed() });
+  };
 
   closeModal = () =>
     this.setState({

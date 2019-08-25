@@ -8,7 +8,7 @@ import abi from './assets/abi.json';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './assets/index.css';
-import { Orders, About, Balance, Loader, Chat } from './components';
+import { Background, Orders, About, Balance, Loader, Chat } from './components';
 
 class App extends Component {
   state = {
@@ -153,6 +153,7 @@ class App extends Component {
           <Balance web3={web3} CDP={CDP} address={accounts[0]} balance={balance} />
         </TabPanel>
         <TabPanel>
+          <Background />
           <Orders />
         </TabPanel>
         <Chat thread={thread} />
