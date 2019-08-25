@@ -395,11 +395,11 @@
       }
     },
     "Market": {
-      "address": "0x0f9A927EcFcc97dCce9c3F7bE5d48C5A122F8D22",
-      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612bb9806100306000396000f3fe",
-      "bodyBytecodeHash": "055d54cb0fc0462cb9ceff11b6d2e2c09957d3f4a2e3e2eac39935bcc367a454",
-      "localBytecodeHash": "ee7a40685056d30868f2e267baf31fe735dbac92bc8036858c3a569a4074bf18",
-      "deployedBytecodeHash": "ee7a40685056d30868f2e267baf31fe735dbac92bc8036858c3a569a4074bf18",
+      "address": "0xb9CF21bA37e4112495E8a4E4BF27087692BDb5A8",
+      "constructorCode": "60806040526001603760005090905534801561001b5760006000fd5b50610021565b612bc7806100306000396000f3fe",
+      "bodyBytecodeHash": "6b84b7e71654fcebdc5cd669bc31a8c4c1c22eded28c6fff2e3837398b5da845",
+      "localBytecodeHash": "f6d6e59f08bfbf8c0eb4daadf1dea5ee57993a726dfd11ae765724e3e300e131",
+      "deployedBytecodeHash": "f6d6e59f08bfbf8c0eb4daadf1dea5ee57993a726dfd11ae765724e3e300e131",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -987,11 +987,11 @@
       }
     },
     "TokenBorrowerFactory": {
-      "address": "0x99eeA3dC32fd94F7b75e81Ed024E0EA5d7034e51",
-      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612cd6806100266000396000f3fe",
-      "bodyBytecodeHash": "93814cef18378c21a58c8f6f88aaceb7fea43960942759300adca9a330ac22ff",
-      "localBytecodeHash": "ff74c6ab500006764c0d58042d0aba2a8c2aa87b7fd3cd9c5d091baa1196b430",
-      "deployedBytecodeHash": "ff74c6ab500006764c0d58042d0aba2a8c2aa87b7fd3cd9c5d091baa1196b430",
+      "address": "0x97BB3474b0fBd56CEd421a0f05f4D5859fBaDBa9",
+      "constructorCode": "60806040523480156100115760006000fd5b50610017565b612ad3806100266000396000f3fe",
+      "bodyBytecodeHash": "5c600408df474aec239b466f95ea4027f2458d810d475b580400e00580a440d3",
+      "localBytecodeHash": "66be4c68c9b2afc843580b18de58867d83ca261c5a4558b3cf96f7298640e55e",
+      "deployedBytecodeHash": "66be4c68c9b2afc843580b18de58867d83ca261c5a4558b3cf96f7298640e55e",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -1051,7 +1051,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "wethAddress",
-          "astId": 4831,
+          "astId": 4834,
           "type": "t_address",
           "src": "290:19:30"
         },
@@ -1059,7 +1059,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "fbMoneyMarket",
-          "astId": 4833,
+          "astId": 4836,
           "type": "t_address",
           "src": "313:29:30"
         },
@@ -1067,7 +1067,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "token",
-          "astId": 4835,
+          "astId": 4838,
           "type": "t_address",
           "src": "346:12:30"
         },
@@ -1075,7 +1075,7 @@
           "contract": "TokenBorrowerFactory",
           "path": "contracts/borrow/TokenBorrowerFactory.sol",
           "label": "borrowers",
-          "astId": 4839,
+          "astId": 4842,
           "type": "t_mapping<t_address>",
           "src": "365:42:30"
         }
@@ -1165,6 +1165,20 @@
         "address": "0x2678947b9DF4EB9E9721BEDBb68C7477394b2f13",
         "version": "1.0.2",
         "implementation": "0x0f9A927EcFcc97dCce9c3F7bE5d48C5A122F8D22",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x724716131880cF18b290Eb80342b7aa5774e071A",
+        "version": "1.0.2",
+        "implementation": "0xb9CF21bA37e4112495E8a4E4BF27087692BDb5A8",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x932518e68565d7A9FF856190033E7cE0e285Fd84",
+        "version": "1.0.2",
+        "implementation": "0xb9CF21bA37e4112495E8a4E4BF27087692BDb5A8",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }
@@ -1300,6 +1314,13 @@
         "address": "0xF22384A4165ccBc9972bE152401De204cE9cAF3c",
         "version": "1.0.2",
         "implementation": "0x99eeA3dC32fd94F7b75e81Ed024E0EA5d7034e51",
+        "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x5ad3D0db195512113F9C004DB50bD558144acCA6",
+        "version": "1.0.2",
+        "implementation": "0x97BB3474b0fBd56CEd421a0f05f4D5859fBaDBa9",
         "admin": "0xC7c12c043aD8f30CEAF422A74d5A34c60F383b62",
         "kind": "Upgradeable"
       }

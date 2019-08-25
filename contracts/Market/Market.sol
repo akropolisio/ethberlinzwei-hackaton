@@ -128,7 +128,7 @@ contract Market is Initializable, ChainlinkClient  {
     if (amount == uint(-1)) {
       withdrawAmount = supplyBalance;
     } else {
-      withdrawAmount = 0; //min(amount, supplyBalance);
+      withdrawAmount = min(amount, supplyBalance);
     }
 
     supplyBalances[msg.sender][asset] -= withdrawAmount;

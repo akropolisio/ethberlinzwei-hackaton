@@ -52,6 +52,8 @@ contract TokenBorrowerFactory is Initializable {
   }
 
   function repay(uint256 amount) public {
+    require(token.balanceOf(msg.sender)>=amount, "amount is failed");
+
     FBCDP cdp = borrowers[msg.sender];
     uint allowance = token.allowance(msg.sender, address(this));
     uint transferAmount = amount;
