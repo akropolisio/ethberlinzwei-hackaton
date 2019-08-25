@@ -16,17 +16,13 @@ class Chat extends React.Component {
     this.state = {
       isUp: false,
       messages: [],
-      // thread,
     };
   }
 
-  // async componentDidMount() {
-  //   const box = await Box.openBox(accounts[0], web3.currentProvider);
-  //   const space = await box.openSpace(accounts[0]);
-  //   const thread = await space.joinThread('unisaur-thread');
-  //   this.setState({ thread });
-  //   thread.onUpdate(upd => console.log('thread update', upd));
-  // }
+  async componentDidMount() {
+    this.handleFetchMessages();
+    this.props.thread.onUpdate(() => this.handleFetchMessages());
+  }
 
   static async getDerivedStateFromProps(nextProps, prevState) {
     const messages = await nextProps.thread.getPosts();
@@ -36,7 +32,22 @@ class Chat extends React.Component {
     return null;
   }
 
+  handleFetchMessages = async () => {
+    const messages = await this.props.thread.getPosts();
+    this.setState({ messages });
+    this.scrollToElementD();
+  };
+
+  scrollToElementD = () => {
+    let messages = document.getElementsByClassName('msg');
+    let topPos = (messages.length && messages[messages.length - 2].offsetTop) || 0;
+    document.getElementById('scrollable').scrollTop = topPos - 10;
+  };
+
   onUpChange = () => {
+    if (!this.state.isUp) {
+      this.handleFetchMessages();
+    }
     this.setState({ isUp: !this.state.isUp });
   };
 
@@ -45,11 +56,19 @@ class Chat extends React.Component {
     const { messages, isUp } = this.state;
 
     return (
-      <FixedContainer isUp={isUp} color={color}>
+      <FixedContainer id="scrollable" isUp={isUp} color={color}>
         <Header color={color} onClick={this.onUpChange}>
           <Img src={isUp ? arr_down : arr_up} />
         </Header>
-        {(messages && messages.map((el, i) => <Post key={i}>{el}</Post>)) || <Loader />}
+        <Posts>
+          {isUp &&
+            (messages.length &&
+              messages.map((el, i) => (
+                <Post className="msg" key={i}>
+                  {el.message}
+                </Post>
+              )))}
+        </Posts>
         {isUp && <Form thread={thread} />}
       </FixedContainer>
     );
@@ -57,10 +76,7 @@ class Chat extends React.Component {
 }
 
 const Form = ({ thread }) => {
-  const _handleFormSubmit = React.useCallback(({ message }) => {
-    console.log('SUBMIT >>>', message, Object.keys(thread));
-    thread.post(message);
-  }, []);
+  const _handleFormSubmit = React.useCallback(({ message }) => thread.post(message), []);
 
   return (
     <Input>
@@ -87,12 +103,19 @@ const FixedContainer = styled.div`
   right: 0;
   bottom: 0;
   height: ${({ isUp }) => (isUp && '400px') || 'unset'};
+  max-height: 400px;
+  overflow-y: scroll;
   width: 300px;
   background: #21a5b7;
   border: 3px solid ${({ color }) => color || 'yellow'};
 `;
 
-const Post = styled.p`
+const Posts = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+const Post = styled.li`
   padding: 0.5em;
   font-size: 1em;
   background-color: white;
@@ -105,6 +128,8 @@ const Header = styled.h3`
   margin: 0;
   padding: 0;
   cursor: pointer;
+  position: fixed;
+  width: 300px;
 `;
 
 const Img = styled.img`
@@ -112,7 +137,8 @@ const Img = styled.img`
   height: 20px;
 `;
 const Input = styled.div`
-  position: absolute;
+  position: fixed;
+  background-color: #ffffff99;
   bottom: 0;
   right: 0;
 `;

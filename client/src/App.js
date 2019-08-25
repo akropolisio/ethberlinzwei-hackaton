@@ -66,9 +66,8 @@ class App extends Component {
       const box = await Box.openBox(accounts[0], web3.currentProvider);
       const space = await box.openSpace(accounts[0]);
       const thread = await space.joinThread('unisaur-thread');
+      thread.onUpdate(upd => console.log('thread updated'));
 
-      thread.onUpdate(upd => console.log('thread update', upd));
-      thread.post('hi! ' + new Date().getTime());
       let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
       balance = web3.utils.fromWei(balance, 'ether');
       let instance = null;
