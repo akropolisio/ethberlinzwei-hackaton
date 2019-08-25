@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
 
 import { test_orders } from '../../../utils';
+import { Background } from '../../elements';
 import CreateOrder from './CreateOrder';
 
 class Orders extends React.Component {
@@ -14,7 +15,8 @@ class Orders extends React.Component {
   render() {
     return (
       <Grid container spacing={4} direction="column">
-        <Grid item>
+        <Background />
+        <Grid item spacing={4}>
           <CreateOrder />
         </Grid>
         <Grid item>

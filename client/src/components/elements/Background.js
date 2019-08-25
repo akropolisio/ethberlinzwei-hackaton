@@ -3,10 +3,20 @@ import styled from 'styled-components';
 import '../../assets/animations.css';
 import { memes } from '../../utils';
 
+const Background = props => {
+  return (
+    <Back>
+      <Memes left={true} onMouseMove={e => this.onMouseMove(e)}>
+        {props.children}
+      </Memes>
+      <Memes onMouseMove={e => this.onMouseMove(e)}>{props.children}</Memes>
+    </Back>
+  );
+};
+
 const Memes = () => {
   return (
     <Playground>
-      <Origin className="tooltip" />
       {memes.map((el, id) => (
         <Meme key={id} className="rotate_meme" />
       ))}
@@ -14,34 +24,27 @@ const Memes = () => {
   );
 };
 
-const Origin = styled.span`
+const Back = styled.main`
   position: absolute;
-  top: 30%;
-  left: 50%;
-  transition: 0.3s;
-  width: 50px;
-  height: 50px;
-  background-color: rebeccapurple;
-  animation: floating;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const Playground = styled.div`
   top: ${props => props.y};
   left: ${props => props.x};
   display: inline-block;
-  font-size: 50px;
-  line-height: 50px;
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const Meme = styled.p`
   position: absolute;
   top: calc(20% - 50px);
-  left: calc(40% - 50px);
-  width: 200px;
-  height: 200px;
+  right: calc(20% - 50px);
+  ${({ left }) => left && 'left: calc(20% - 50px);'}
+  width: 70px;
+  height: 70px;
 `;
-
-export default Memes;
+export default Background;
