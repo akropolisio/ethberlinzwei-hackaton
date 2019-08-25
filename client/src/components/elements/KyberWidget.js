@@ -87,13 +87,6 @@ const KyberLink = styled.a`
   }
 `;
 
-const Flex = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const Text = styled.p`
   text-align: center;
 `;

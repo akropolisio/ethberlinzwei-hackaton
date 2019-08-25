@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import getWeb3, { getGanacheWeb3 } from './utils/getWeb3';
-import { initialize0x } from './utils/0x';
 import Box from '3box';
 
 import { solidityLoaderOptions } from '../config/webpack';
@@ -10,8 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './assets/index.css';
 import { Background, Orders, About, Balance, Loader, Chat } from './components';
-
-import { Button } from '@material-ui/core';
 
 class App extends Component {
   state = {
@@ -87,14 +84,11 @@ class App extends Component {
       //   }
       // }
 
-      const Ox = initialize0x();
-
       if (instance || instanceWallet) {
         // Set web3, accounts, and contract to the state, and then proceed with an
         // example of interacting with the contract's methods.
         this.setState(
           {
-            Ox,
             web3,
             thread,
             ganacheAccounts,
@@ -116,7 +110,6 @@ class App extends Component {
         );
       } else {
         this.setState({
-          Ox,
           web3,
           thread,
           ganacheAccounts,
@@ -193,8 +186,7 @@ class App extends Component {
           <Background />
         </TabPanel>
         <TabPanel>
-          <h2>Open Orders</h2>
-          <Orders Ox={this.state.Ox} />
+          <Orders />
         </TabPanel>
         <Chat thread={thread} />
       </Tabs>

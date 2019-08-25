@@ -5,8 +5,7 @@ import { Form as FinalForm, Field as FinalField } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
 import { Grid, Button } from '@material-ui/core';
 
-import { Loader } from '../elements';
-import { KyberWidget, Text } from '../elements';
+import { KyberWidget } from '../elements';
 
 class Balance extends React.Component {
   constructor(props) {
