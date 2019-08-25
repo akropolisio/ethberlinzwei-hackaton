@@ -25,7 +25,7 @@ function CreateOrder() {
       initialValues={{ targetCurrency: 'FBT' }}
     >
       {({ handleSubmit, submitting, pristine }) => (
-        <Grid component="form" onSubmit={handleSubmit} container spacing={2} direction="column">
+        <Grid component="form" onSubmit={handleSubmit} container spacing={2} direction="column" alignItems="center">
           <Grid item>
             <Grid container spacing={2} alignItems="center">
               <Grid item>
