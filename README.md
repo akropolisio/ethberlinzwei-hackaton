@@ -8,7 +8,7 @@
   - WrappedEther
   - FBToken
   - MoneyMarket
-  -TokenBorrowFactory
+  - TokenBorrowFactory
 
 
 ```bash
