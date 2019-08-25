@@ -41,9 +41,9 @@ contract FBCDP is Initializable {
     require(supplyStatus == true, "supply failed");
   }
 
-  function borrow(address account, address borrowToken, uint256 tokenAmount) public {
+  function borrow(uint256 tokenAmount) public {
     //minting tokens
-    bool borrowStatus = fbMoneyMarket.borrow(account, address(borrowedToken), address(weth), tokenAmount);
+    bool borrowStatus = fbMoneyMarket.borrow(address(this), address(borrowedToken), address(weth), tokenAmount);
     
     require(borrowStatus == true, "borrow failed");
 
@@ -57,27 +57,29 @@ contract FBCDP is Initializable {
 
     bool repayStatus = fbMoneyMarket.repayBorrow(address(borrowedToken), uint(-1));
     require(repayStatus == true, "repay failed");
+  }
 
-    /* ---------- withdraw excess collateral weth ------- */
-    uint collateralRatio = fbMoneyMarket.collateralRatio();
-    (bool status , uint totalSupply, uint totalBorrow) = fbMoneyMarket.calculateAccountValues(address(this));
-    require(status == true, "calculating account values failed");
+  function withdraw(uint256 amount) external {
+    uint amountToWithdraw;
 
-    /*uint amountToWithdraw;
+    uint totalBorrow = fbMoneyMarket.getBorrowBalance(address(this), address(borrowedToken));
+    uint totalEth = fbMoneyMarket.getSupplyBalance(address(this), address(weth));
+
     if (totalBorrow == 0) {
       amountToWithdraw = uint(-1);
     } else {
-      amountToWithdraw = findAvailableWithdrawal(totalSupply, totalBorrow, collateralRatio);
+      require(amount<=(totalEth*fbMoneyMarket.ethPrice()), "eth is locked");
+      amountToWithdraw = amount;
     }
 
     bool withdrawStatus = fbMoneyMarket.withdraw(address(weth), amountToWithdraw);
+
     require(withdrawStatus == true, "withdrawal failed");
 
-   
+    /* ---------- return ether to user ---------*/
     uint wethBalance = weth.balanceOf(address(this));
     weth.withdraw(wethBalance);
-    owner.transfer(address(this).balance);*/
-
+    owner.transfer(address(this).balance);
   }
 
   /* @dev it is necessary to accept eth to unwrap weth */

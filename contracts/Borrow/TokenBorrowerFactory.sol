@@ -48,7 +48,7 @@ contract TokenBorrowerFactory is Initializable {
 
     cdp = borrowers[msg.sender];
 
-    cdp.borrow(address(borrowers[msg.sender]), address(token), amount);
+    cdp.borrow(amount);
   }
 
   function repay() public {
@@ -60,6 +60,14 @@ contract TokenBorrowerFactory is Initializable {
 
     token.transferFrom(msg.sender, address(cdp), transferAmount);
     cdp.repay();
+  }
+
+  function withdraw(uint256 amount) public {
+    require(address(borrowers[msg.sender]) != address(0x0), "you need create CDP");
+    FBCDP cdp;
+
+    cdp = borrowers[msg.sender];
+    cdp.withdraw(amount);
   }
 
   function min(uint a, uint b) private pure returns ( uint ) {

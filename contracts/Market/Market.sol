@@ -40,7 +40,7 @@ contract Market is Initializable, ChainlinkClient  {
 
   }
 
-  function currentCollateralRatio() public returns(uint256) {
+  function currentCollateralRatio() public view returns(uint256) {
     return collateralRatio;
   }
 
@@ -64,7 +64,7 @@ contract Market is Initializable, ChainlinkClient  {
     return tokenPriceOracle[asset];
   }
 
-  function ethCurrentPriceCount(uint amount, address account, address weth) public view returns (uint256) {
+  function ethCurrentPriceCount(address account, address weth) public view returns (uint256) {
     uint eth = getSupplyBalance(account, weth)*ethCurrentPrice*100; //eth in usd
     return eth;
   }
@@ -98,7 +98,7 @@ contract Market is Initializable, ChainlinkClient  {
 
   function borrow(address account, address asset, address weth, uint amount) public returns (bool) {
 
-    uint eth = ethCurrentPriceCount(amount, account, weth);
+    uint eth = ethCurrentPriceCount(account, weth);
 
     uint fb = fbCurrentPriceCount(amount, account, asset);
   
@@ -111,7 +111,7 @@ contract Market is Initializable, ChainlinkClient  {
 
     return true;
   }
-  
+
 
   function supply(address asset, uint amount) public returns (bool) {
     supplyBalances[msg.sender][asset] += amount;
@@ -144,7 +144,7 @@ contract Market is Initializable, ChainlinkClient  {
 
     uint repayAmount;
     if (amount == uint(-1)) {
-      repayAmount = 0; //min(token.balanceOf(msg.sender), borrowBalance);
+      repayAmount = min(token.balanceOf(msg.sender), borrowBalance);
     } else {
       repayAmount = amount;
     }
@@ -164,6 +164,14 @@ contract Market is Initializable, ChainlinkClient  {
 
   function getBorrowBalance(address account, address asset) view public returns (uint) {
     return borrowBalances[account][asset];
+  }
+
+   function min(uint a, uint b) internal pure returns (uint) {
+    if (a < b) {
+      return a;
+    } else {
+      return b;
+    }
   }
 
 }
