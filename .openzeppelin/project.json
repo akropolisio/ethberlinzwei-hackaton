@@ -1,7 +1,22 @@
 {
   "manifestVersion": "2.2",
-  "contracts": {},
+  "contracts": {
+    "Migrations": "Migrations",
+    "FBToken": "FBERC20Token",
+    "Market": "Market",
+    "ERC20Mock": "ERC20Mock",
+    "Weth": "Weth",
+    "FBERC20Token": "FBERC20Token",
+    "TokenBorrowerFactory": "TokenBorrowerFactory"
+  },
   "dependencies": {},
-  "name": "unisaur.cz",
-  "version": "1.0.2"
+  "name": "unizaur",
+  "version": "1.0.2",
+  "compiler": {
+    "manager": "openzeppelin",
+    "compilerSettings": {
+      "optimizer": {}
+    },
+    "solcVersion": "0.5.11"
+  }
 }

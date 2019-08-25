@@ -1,0 +1,548 @@
+{
+  "contracts": {
+    "Migrations": {
+      "address": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
+      "constructorCode": "608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506102e7806100606000396000f3fe",
+      "bodyBytecodeHash": "ace1f1cdf6b79f04677b3457cb8cf148288a65d44681946389ef482fbfea30d0",
+      "localBytecodeHash": "40e5a7abf6e6d11274ffd2f8c9f5aa637d15bc3e7261fdd9a224b76d6a13789a",
+      "deployedBytecodeHash": "40e5a7abf6e6d11274ffd2f8c9f5aa637d15bc3e7261fdd9a224b76d6a13789a",
+      "types": {
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Migrations",
+          "path": "contracts/Migrations.sol",
+          "label": "owner",
+          "astId": 1043,
+          "type": "t_address",
+          "src": "58:20:4"
+        },
+        {
+          "contract": "Migrations",
+          "path": "contracts/Migrations.sol",
+          "label": "last_completed_migration",
+          "astId": 1045,
+          "type": "t_uint256",
+          "src": "82:39:4"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": true,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    },
+    "FBToken": {
+      "address": "0xe982E462b094850F12AF94d21D470e21bE9D0E9C",
+      "constructorCode": "6080604052613132806100136000396000f3fe",
+      "bodyBytecodeHash": "f77dc238bcb2245b14014aec478a3b45eb8953ccadf13a17a424f6e44b45fb1b",
+      "localBytecodeHash": "0c1d8b2265f46a70c729c06c3cd15f41a579cbe52560897892c5e2f448688373",
+      "deployedBytecodeHash": "0c1d8b2265f46a70c729c06c3cd15f41a579cbe52560897892c5e2f448688373",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_string": {
+          "id": "t_string",
+          "kind": "elementary",
+          "label": "string"
+        },
+        "t_uint8": {
+          "id": "t_uint8",
+          "kind": "elementary",
+          "label": "uint8"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        },
+        "t_struct<Roles.Role>": {
+          "id": "t_struct<Roles.Role>",
+          "kind": "struct",
+          "label": "Roles.Role",
+          "members": [
+            {
+              "label": "bearer",
+              "astId": 1399,
+              "type": "t_mapping<t_bool>",
+              "src": "150:32:9"
+            }
+          ]
+        },
+        "t_mapping<t_bool>": {
+          "id": "t_mapping<t_bool>",
+          "valueType": "t_bool",
+          "label": "mapping(key => bool)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 2918,
+          "type": "t_bool",
+          "src": "757:24:21"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 2920,
+          "type": "t_bool",
+          "src": "876:25:21"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 2976,
+          "type": "t_array:50<t_uint256>",
+          "src": "1951:29:21"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "_name",
+          "astId": 2408,
+          "type": "t_string",
+          "src": "397:20:16"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "_symbol",
+          "astId": 2410,
+          "type": "t_string",
+          "src": "423:22:16"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "_decimals",
+          "astId": 2412,
+          "type": "t_uint8",
+          "src": "451:23:16"
+        },
+        {
+          "contract": "ERC20Detailed",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol",
+          "label": "______gap",
+          "astId": 2464,
+          "type": "t_array:50<t_uint256>",
+          "src": "1112:29:16"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "_balances",
+          "astId": 1983,
+          "type": "t_mapping<t_uint256>",
+          "src": "809:46:14"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "_allowances",
+          "astId": 1989,
+          "type": "t_mapping<t_uint256>",
+          "src": "862:69:14"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "_totalSupply",
+          "astId": 1991,
+          "type": "t_uint256",
+          "src": "938:28:14"
+        },
+        {
+          "contract": "ERC20",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol",
+          "label": "______gap",
+          "astId": 2356,
+          "type": "t_array:50<t_uint256>",
+          "src": "7822:29:14"
+        },
+        {
+          "contract": "MinterRole",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol",
+          "label": "_minters",
+          "astId": 1509,
+          "type": "t_struct<Roles.Role>",
+          "src": "327:27:10"
+        },
+        {
+          "contract": "MinterRole",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol",
+          "label": "______gap",
+          "astId": 1609,
+          "type": "t_array:50<t_uint256>",
+          "src": "1193:29:10"
+        },
+        {
+          "contract": "ERC20Mintable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Mintable.sol",
+          "label": "______gap",
+          "astId": 2513,
+          "type": "t_array:50<t_uint256>",
+          "src": "760:29:17"
+        },
+        {
+          "contract": "PauserRole",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/PauserRole.sol",
+          "label": "_pausers",
+          "astId": 1632,
+          "type": "t_struct<Roles.Role>",
+          "src": "327:27:11"
+        },
+        {
+          "contract": "PauserRole",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/PauserRole.sol",
+          "label": "______gap",
+          "astId": 1732,
+          "type": "t_array:50<t_uint256>",
+          "src": "1193:29:11"
+        },
+        {
+          "contract": "Pausable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.sol",
+          "label": "_paused",
+          "astId": 1754,
+          "type": "t_bool",
+          "src": "406:20:12"
+        },
+        {
+          "contract": "Pausable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.sol",
+          "label": "______gap",
+          "astId": 1835,
+          "type": "t_array:50<t_uint256>",
+          "src": "1487:29:12"
+        },
+        {
+          "contract": "ERC20Pausable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Pausable.sol",
+          "label": "______gap",
+          "astId": 2636,
+          "type": "t_array:50<t_uint256>",
+          "src": "1209:29:18"
+        },
+        {
+          "contract": "ERC20Burnable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Burnable.sol",
+          "label": "______gap",
+          "astId": 2397,
+          "type": "t_array:50<t_uint256>",
+          "src": "841:29:15"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    },
+    "Market": {
+      "address": "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+      "constructorCode": "608060405234801561001057600080fd5b50611733806100206000396000f3fe",
+      "bodyBytecodeHash": "9a6175b0d68cd925cd659f6011d7ba4d8935fef9aa6957fba8140e7c4e568a7b",
+      "localBytecodeHash": "59b9ea0fae6406d257dfd362917702e1d35e5f1c939e2e27f5eb8c9db8473e8e",
+      "deployedBytecodeHash": "59b9ea0fae6406d257dfd362917702e1d35e5f1c939e2e27f5eb8c9db8473e8e",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_array:dyn<t_address>": {
+          "id": "t_array:dyn<t_address>",
+          "valueType": "t_address",
+          "length": "dyn",
+          "kind": "array",
+          "label": "address[]"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 2920,
+          "type": "t_bool",
+          "src": "757:24:21"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 2922,
+          "type": "t_bool",
+          "src": "876:25:21"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 2978,
+          "type": "t_array:50<t_uint256>",
+          "src": "1951:29:21"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "collateralMarkets",
+          "astId": 535,
+          "type": "t_array:dyn<t_address>",
+          "src": "173:34:2"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "supplyBalances",
+          "astId": 541,
+          "type": "t_mapping<t_uint256>",
+          "src": "212:66:2"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "borrowBalances",
+          "astId": 547,
+          "type": "t_mapping<t_uint256>",
+          "src": "282:66:2"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "fakePriceOracle",
+          "astId": 551,
+          "type": "t_mapping<t_uint256>",
+          "src": "353:49:2"
+        },
+        {
+          "contract": "Market",
+          "path": "contracts/Market/Market.sol",
+          "label": "collateralRatio",
+          "astId": 553,
+          "type": "t_uint256",
+          "src": "406:27:2"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    },
+    "ERC20Mock": {
+      "address": "0x6eD79Aa1c71FD7BdBC515EfdA3Bd4e26394435cC",
+      "constructorCode": "6080604052610a9b806100136000396000f3fe",
+      "bodyBytecodeHash": "92ac416af0424e76e913d4cc13432596ec66a3053ed2fe68b28b3462b1c4f4c1",
+      "localBytecodeHash": "49e5a678d64a527743741a753d3babc4f8fb5f752192930b70b09cc1f0df4c39",
+      "deployedBytecodeHash": "49e5a678d64a527743741a753d3babc4f8fb5f752192930b70b09cc1f0df4c39",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 3415,
+          "type": "t_bool",
+          "src": "757:24:23"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 3417,
+          "type": "t_bool",
+          "src": "876:25:23"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 3473,
+          "type": "t_array:50<t_uint256>",
+          "src": "1951:29:23"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "_balances",
+          "astId": 674,
+          "type": "t_mapping<t_uint256>",
+          "src": "965:47:4"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "_allowances",
+          "astId": 680,
+          "type": "t_mapping<t_uint256>",
+          "src": "1019:70:4"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "_totalSupply",
+          "astId": 682,
+          "type": "t_uint256",
+          "src": "1096:29:4"
+        },
+        {
+          "contract": "ERC20Mock",
+          "path": "contracts/Mock/ERC20Mock.sol",
+          "label": "______gap",
+          "astId": 1047,
+          "type": "t_array:50<t_uint256>",
+          "src": "7981:29:4"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    }
+  },
+  "solidityLibs": {},
+  "proxies": {
+    "unizaur/Migrations": [
+      {
+        "address": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+        "version": "1.0.2",
+        "implementation": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      }
+    ],
+    "unizaur/FBToken": [
+      {
+        "address": "0x59d3631c86BbE35EF041872d502F218A39FBa150",
+        "version": "1.0.2",
+        "implementation": "0xe982E462b094850F12AF94d21D470e21bE9D0E9C",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+        "version": "1.0.2",
+        "implementation": "0xe982E462b094850F12AF94d21D470e21bE9D0E9C",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "version": "1.0.2",
+        "implementation": "0xe982E462b094850F12AF94d21D470e21bE9D0E9C",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      }
+    ],
+    "unizaur/Market": [
+      {
+        "address": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
+        "version": "1.0.2",
+        "implementation": "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x5f8e26fAcC23FA4cbd87b8d9Dbbd33D5047abDE1",
+        "version": "1.0.2",
+        "implementation": "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+        "admin": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "kind": "Upgradeable"
+      }
+    ]
+  },
+  "manifestVersion": "2.2",
+  "version": "1.0.2",
+  "proxyAdmin": {
+    "address": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B"
+  }
+}

@@ -33,6 +33,7 @@
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": "^2.2.1",
     "@openzeppelin/upgrades": "^2.5.1",
+    "chainlink": "^0.6.6-beta2",
     "dotenv": "^6.2.0",
     "truffle-hdwallet-provider": "^1.0.3"
   },
