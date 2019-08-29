@@ -1,5 +1,5 @@
 <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
-<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+<svg width="50" height="50" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
     <g fill="#360ee9" fill-rule="evenodd">
         <g transform="translate(1 1)" stroke-width="6">
             <circle stroke-opacity=".5" cx="18" cy="18" r="18"/>
