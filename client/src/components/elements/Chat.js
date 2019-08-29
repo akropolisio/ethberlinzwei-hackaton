@@ -38,7 +38,6 @@ class Chat extends React.Component {
   scrollToElementD = () => {
     let messages = document.getElementsByClassName('msg');
     let topPos = (messages.length && messages[messages.length - 1] && messages[messages.length - 1].offsetTop) || 0;
-    console.log('topPos', topPos);
     document.getElementById('scrollable').scrollTop = topPos - 10;
   };
 

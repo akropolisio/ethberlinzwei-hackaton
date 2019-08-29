@@ -93,6 +93,7 @@ class App extends Component {
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(`Failed to load web3, accounts, or contract. Check console for details.`);
+      this.setState({ isError: true });
       console.error(error);
     }
   };
@@ -129,10 +130,13 @@ class App extends Component {
   };
 
   render() {
-    let { accounts, balance, thread, CDP, web3 } = this.state;
+    let { isError, accounts, balance, thread, CDP, web3 } = this.state;
 
     return !this.state.web3 ? (
-      <Loader />
+      <Loading>
+        <About />
+        {!isError && <Loader />}
+      </Loading>
     ) : (
       <Tabs>
         <TabList>
@@ -167,4 +171,8 @@ const H1 = styled.h1`
   color: green;
 `;
 
+const Loading = styled.div`
+  position: relative;
+  z-index: -1;
+`;
 export default App;

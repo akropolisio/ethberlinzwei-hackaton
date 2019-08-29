@@ -56,15 +56,6 @@ code {
   margin: 20px 0;
 }
 
-.loader {
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  padding: 40px 0;
-}
 h3 {
   margin-top: 30px;
 }
